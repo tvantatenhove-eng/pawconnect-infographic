@@ -305,7 +305,7 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
     <div class="cbar-stripe"></div>
     <div class="cbar-dot"></div>
     <div class="cbar-badge" id="t-cbar-badge">🚧 In ontwikkeling</div>
-    <div class="cbar-text" id="t-cbar-text">PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong>Neem contact op →</strong></div>
+    <div class="cbar-text" id="t-cbar-text">PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong><a href="mailto:info@pawconnect.nl" style="color:var(--teal-xl);text-decoration:none">Neem contact op →</a></strong></div>
     <div class="cbar-dot"></div>
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 English</button>
   </div>
@@ -632,10 +632,10 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
   <div class="ftb">PawConnect</div>
   <div class="ftt" id="t-ft-tag">Dierenverzorging, digitaal georganiseerd · Pilotfase 2026</div>
   <div class="ftdiv"></div>
-  <div class="ftm"><a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; <a href="mailto:info@pawconnect.nl">info@pawconnect.nl</a> &nbsp;·&nbsp; <span id="t-ft-meta">© 2026 PawConnect · Platform in ontwikkeling</span></div>
+  <div class="ftm"><a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#630a0d050c23130214000c0d0d0600174d0d0f"><span class="__cf_email__" data-cfemail="5831363e371828392f3b3736363d3b2c763634">[email&#160;protected]</span></a> &nbsp;·&nbsp; <span id="t-ft-meta">© 2026 PawConnect · Platform in ontwikkeling</span></div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Paw prints ───────────────────────────────────────────────────
 const ps=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor"><ellipse cx="15" cy="17" rx="6" ry="5.5"/><ellipse cx="7" cy="12" rx="3.2" ry="3.6"/><ellipse cx="23" cy="12" rx="3.2" ry="3.6"/><ellipse cx="10" cy="5.5" rx="3" ry="3.3"/><ellipse cx="20" cy="5.5" rx="3" ry="3.3"/></svg>`;
 const pb=document.querySelector('.paws-bg');
@@ -652,7 +652,7 @@ const STRINGS={
 nl:{
   title:'PawConnect — Platform Overzicht 2026',
   'cbar-badge':'🚧 In ontwikkeling',
-  'cbar-text':'PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong>Neem contact op →</strong>',
+  'cbar-text':'PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong><a href="mailto:info@pawconnect.nl" style="color:var(--teal-xl);text-decoration:none">Neem contact op →</a></strong>',
   langBtn:'🌐 English',
   hbadge:'🐾 Platform Overzicht 2026',
   hsub:'Het all-in-one platform voor dierenverzorgingsbedrijven. Van bedrijfsprofiel en gedeelde agenda tot contactloze pre-scan — alles in één omgeving.',
@@ -724,7 +724,7 @@ nl:{
 en:{
   title:'PawConnect — Platform Overview 2026',
   'cbar-badge':'🚧 Under development',
-  'cbar-text':'PawConnect is currently in <strong>pilot phase</strong> — available for selected pet care businesses. Interested? <strong>Get in touch →</strong>',
+  'cbar-text':'PawConnect is currently in <strong>pilot phase</strong> — available for selected pet care businesses. Interested? <strong><a href="mailto:info@pawconnect.nl" style="color:var(--teal-xl);text-decoration:none">Get in touch →</a></strong>',
   langBtn:'🌐 Nederlands',
   hbadge:'🐾 Platform Overview 2026',
   hsub:'The all-in-one platform for pet care businesses. From business profile and shared calendar to contactless pre-scan — everything in one environment.',
@@ -826,14 +826,3 @@ function toggleLang(){
     items.forEach((text,fi)=>{
       if(!rfs[fi]) return;
       rfs[fi].innerHTML='';
-      const dot=document.createElement('div');
-      dot.className='rdot';
-      dot.style.background=DOT_COLS[i];
-      rfs[fi].appendChild(dot);
-      rfs[fi].appendChild(document.createTextNode(text));
-    });
-  });
-}
-</script>
-</body>
-</html>
