@@ -225,6 +225,76 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
   .hstats{flex-direction:column;gap:10px}.hstat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding:14px 0}
   .cbar-text{display:none}
 }
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  /* Bar & layout */
+  .cbar-inner{padding:9px 12px;gap:8px}
+  .cbar-badge{font-size:10px;padding:3px 9px}
+  .lang-btn{padding:4px 11px;font-size:11px;margin-left:4px}
+  .sec{padding:56px 20px}
+  .secbg{padding:56px 20px}
+
+  /* Hero */
+  .hero{padding:70px 20px 80px}
+  .hero h1{letter-spacing:-1.5px}
+  .hsub{font-size:15px;margin-bottom:36px}
+  .hstat{padding:12px 0}
+  .hstat-n{font-size:26px}
+
+  /* Section headings */
+  .sh{font-size:28px}
+
+  /* Map card */
+  .mc{height:280px}
+
+  /* Bedrijfsprofiel */
+  .profme{flex-direction:column;gap:6px}
+  .pcta{flex-direction:column}
+  .btnt,.btng{width:100%;text-align:center}
+
+  /* Rollen */
+  .rch{padding:22px 18px 16px}
+  .rcf{padding:14px 18px 20px}
+
+  /* Flow */
+  .flstep{flex-direction:row;text-align:left;gap:14px;align-items:flex-start}
+  .fln{width:44px;height:44px;font-size:16px;margin-bottom:0;flex-shrink:0}
+  .flic{display:none}
+  .fll{font-size:14px;margin-bottom:3px}
+  .flsu{max-width:100%;margin:0}
+  .apistrip{padding:20px}
+
+  /* Pre-scan */
+  .petphr{flex-wrap:wrap;gap:10px}
+  .petphb{width:100%}
+  .psben-wa{flex-direction:column;align-items:flex-start;gap:10px}
+  .wa-btn{width:100%;justify-content:center}
+
+  /* Agenda — compact scrollable */
+  .agm{border-radius:16px}
+  .agtb{flex-direction:column;gap:10px;padding:12px 14px;align-items:flex-start}
+  .agvbs{width:100%;justify-content:space-between}
+  .agvb{flex:1;text-align:center}
+
+  /* Swap full week grid for a compact day-view on mobile */
+  .agwk{grid-template-columns:38px repeat(5,1fr)}
+  .agwk > div:first-child,.agtc{display:none}
+  .agenda-body-grid{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .agenda-body-inner{display:grid;grid-template-columns:repeat(5,minmax(90px,1fr));min-width:450px}
+  .agts{height:44px}
+  .agrw{height:44px}
+  .agev{padding:3px 6px}
+  .agen{font-size:10px}
+  .agem{font-size:9px}
+  .agleg{padding:12px 14px;gap:10px;flex-wrap:wrap}
+  .agvds{margin-top:20px}
+  .agvd{padding:16px}
+
+  /* Footer */
+  .ft{padding:44px 20px 36px}
+}
+
 </style>
 </head>
 <body>
@@ -499,7 +569,7 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
         <div class="agdh"><div class="agdn" id="t-d4">Do</div><div class="agdd">13</div></div>
         <div class="agdh"><div class="agdn" id="t-d5">Vr</div><div class="agdd">14</div></div>
       </div>
-      <div style="display:grid;grid-template-columns:52px repeat(5,1fr);max-height:364px;overflow:hidden">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="display:grid;grid-template-columns:52px repeat(5,minmax(80px,1fr));max-height:364px;overflow:hidden;min-width:420px">
         <div class="agtc">
           <div class="agts"><span class="agtl">9:00</span></div><div class="agts"><span class="agtl">10:00</span></div>
           <div class="agts"><span class="agtl">11:00</span></div><div class="agts"><span class="agtl">12:00</span></div>
@@ -537,7 +607,7 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
           <div class="agev" style="top:158px;height:72px;background:#4B9C9A"><div class="agen">✂️ Lola — Trim</div><div class="agem">12:00–13:15 · Rosa</div></div>
           <div class="agev" style="top:260px;height:50px;background:#3D5166"><div class="agen">🛁 Teddy — Bad</div><div class="agem">14:00 · Daan</div></div>
         </div>
-      </div>
+      </div></div>
       <div class="agleg">
         <span class="aglegttl" id="t-ag-legttl">Medewerkers</span>
         <div class="agli"><div class="agld" style="background:#4B9C9A"></div>Rosa</div>
@@ -562,7 +632,7 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
   <div class="ftb">PawConnect</div>
   <div class="ftt" id="t-ft-tag">Dierenverzorging, digitaal georganiseerd · Pilotfase 2026</div>
   <div class="ftdiv"></div>
-  <div class="ftm"><a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; <span id="t-ft-meta">© 2026 PawConnect · Platform in ontwikkeling</span></div>
+  <div class="ftm"><a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; <a href="mailto:info@pawconnect.nl">info@pawconnect.nl</a> &nbsp;·&nbsp; <span id="t-ft-meta">© 2026 PawConnect · Platform in ontwikkeling</span></div>
 </footer>
 
 <script>
