@@ -6,1217 +6,764 @@
 <title>PawConnect — Platform Overzicht 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#4B9C9A;--teal-l:#5DB5B3;--teal-xl:#A8D8D7;--teal-bg:#E0F5F5;--teal-xx:#F0FAFA;
+  --navy:#2C3E50;--navy-l:#3D5166;--navy-d:#1A2D3E;
+  --grey:#7F8C8D;--border:#D4EEEE;
+  --green:#27AE60;--orange:#E07B00;--red:#E05555;--amber:#F0920A;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-height:1.6}
 
-  :root {
-    --teal:     #4B9C9A;
-    --teal-l:   #5DB5B3;
-    --teal-xl:  #A8D8D7;
-    --teal-bg:  #E0F5F5;
-    --teal-xx:  #F0FAFA;
-    --navy:     #2C3E50;
-    --navy-l:   #3D5166;
-    --grey:     #7F8C8D;
-    --grey-l:   #B2BABB;
-    --border:   #D4EEEE;
-    --white:    #ffffff;
-    --green:    #27AE60;
-    --orange:   #E07B00;
-    --red:      #E05555;
-  }
+/* ── CONSTRUCTION BAR ── */
+.cbar{background:linear-gradient(90deg,#1A2D3E,#263849 40%,#1A2D3E);border-bottom:3px solid var(--amber);position:sticky;top:0;z-index:1000;overflow:hidden}
+.cbar-inner{display:flex;align-items:center;justify-content:center;gap:14px;padding:11px 24px;position:relative}
+.cbar-stripe{position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(240,146,10,.05) 14px,rgba(240,146,10,.05) 28px);pointer-events:none}
+.cbar-badge{background:var(--amber);color:#fff;font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:4px;flex-shrink:0;position:relative;z-index:1}
+.cbar-text{font-size:13px;color:rgba(255,255,255,.82);font-weight:500;position:relative;z-index:1}
+.cbar-text strong{color:var(--teal-xl)}
+.cbar-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pdot 1.6s ease-in-out infinite;position:relative;z-index:1}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+.lang-btn{position:relative;z-index:2;margin-left:10px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;border-radius:20px;padding:5px 16px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;letter-spacing:.4px;transition:background .2s,border-color .2s;white-space:nowrap;flex-shrink:0}
+.lang-btn:hover{background:rgba(75,156,154,.35);border-color:var(--teal-l)}
 
-  html { scroll-behavior: smooth; }
+/* ── HERO ── */
+.hero{background:var(--navy);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;padding:90px 40px 110px}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb1{width:640px;height:640px;top:-200px;right:-180px;background:radial-gradient(circle,rgba(75,156,154,.2) 0%,transparent 70%)}
+.orb2{width:520px;height:520px;bottom:-160px;left:-140px;background:radial-gradient(circle,rgba(93,181,179,.12) 0%,transparent 70%)}
+.paws-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pf{position:absolute;opacity:0;animation:pfw 12s ease-in-out infinite}
+@keyframes pfw{0%{opacity:0;transform:translateY(20px) rotate(var(--rot))}15%{opacity:var(--op)}85%{opacity:var(--op)}100%{opacity:0;transform:translateY(-30px) rotate(var(--rot))}}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(75,156,154,.16);border:1.5px solid rgba(75,156,154,.32);color:var(--teal-xl);border-radius:30px;padding:8px 20px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;animation:fu .6s ease both}
+.hlogo{margin-bottom:22px;animation:fu .7s .06s ease both}
+.hero h1{font-family:'Nunito',sans-serif;font-size:clamp(54px,9vw,100px);font-weight:900;color:#fff;line-height:1;letter-spacing:-3px;margin-bottom:16px;animation:fu .7s .12s ease both}
+.hero h1 span{background:linear-gradient(135deg,var(--teal-l),var(--teal-xl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsub{font-size:clamp(15px,2vw,19px);color:rgba(255,255,255,.58);font-weight:300;max-width:580px;margin-bottom:48px;line-height:1.85;animation:fu .7s .18s ease both}
+.hstats{display:flex;justify-content:center;animation:fu .7s .28s ease both}
+.hstat{padding:18px 30px;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'Nunito',sans-serif;font-size:32px;font-weight:900;color:var(--teal-l);line-height:1;margin-bottom:4px}
+.hstat-l{font-size:10px;color:rgba(255,255,255,.38);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.hscroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.22);font-size:22px;animation:bounce 2.2s ease-in-out infinite,fu .7s .5s ease both}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #F5FAFA;
-    color: var(--navy);
-    line-height: 1.6;
-  }
+/* ── LAYOUT ── */
+.sec{padding:88px 40px;max-width:1160px;margin:0 auto}
+.secbg{padding:88px 40px}
+.secinr{max-width:1160px;margin:0 auto}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--teal-bg);color:var(--teal);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.chipl{background:rgba(75,156,154,.18);color:var(--teal-xl)}
+.sh{font-family:'Nunito',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.15;margin-bottom:14px}
+.shd{color:var(--navy)}.shw{color:#fff}
+.sh em{font-style:normal;color:var(--teal)}
+.sl{font-size:16px;max-width:600px;font-weight:400;line-height:1.85}
+.sld{color:var(--grey)}.slw{color:rgba(255,255,255,.48)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
 
-  /* ── HERO ────────────────────────────────────────────────────────────────── */
-  .hero {
-    background: var(--navy);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 80px 40px;
-  }
+/* ── INTRO ── */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;margin-top:56px}
+.it p{font-size:15px;color:#5D6D7E;line-height:1.95;margin-bottom:14px}
+.iq{border-left:4px solid var(--teal);padding:16px 22px;background:var(--teal-xx);border-radius:0 12px 12px 0;margin-top:20px;font-size:14px;color:var(--navy);font-style:italic;font-weight:500;line-height:1.75}
+.mc{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(44,62,80,.12);height:370px;display:flex;flex-direction:column}
+.mtb{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.mdot{width:11px;height:11px;border-radius:50%}
+.mtbt{margin-left:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,.5)}
+.ma{background:#D8EDDA;position:relative;flex:1;overflow:hidden}
+.msvg{position:absolute;inset:0;width:100%;height:100%}
+.mp{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.mpb{background:white;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--navy);box-shadow:0 3px 10px rgba(0,0,0,.12);margin-bottom:3px;white-space:nowrap;position:relative}
+.mpb::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:white}
+.mpd{width:36px;height:36px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.mpd span{transform:rotate(45deg)}
+.mgps{position:absolute;width:16px;height:16px;background:var(--red);border-radius:50%;box-shadow:0 0 0 6px rgba(224,85,85,.18)}
+.msrch{position:absolute;bottom:12px;left:12px;right:12px;background:white;border-radius:10px;padding:9px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
 
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .hero-orb-1 { width: 600px; height: 600px; top: -180px; right: -160px; background: radial-gradient(circle, rgba(75,156,154,.22) 0%, transparent 70%); }
-  .hero-orb-2 { width: 500px; height: 500px; bottom: -150px; left: -120px; background: radial-gradient(circle, rgba(93,181,179,.14) 0%, transparent 70%); }
-  .hero-orb-3 { width: 280px; height: 280px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(75,156,154,.08) 0%, transparent 70%); }
+/* ── BEDRIJFSPROFIEL ── */
+.profg{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;margin-top:56px}
+.profm{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden}
+.profh{background:linear-gradient(135deg,var(--teal),var(--teal-l));height:96px;position:relative}
+.profav{width:70px;height:70px;border-radius:16px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:30px;border:3px solid rgba(255,255,255,.3);position:absolute;bottom:-26px;left:22px}
+.profb{padding:40px 22px 22px}
+.profn{font-family:'Nunito',sans-serif;font-size:21px;font-weight:900;color:#fff;margin-bottom:3px}
+.proft{font-size:12px;color:var(--teal-xl);font-weight:600;margin-bottom:14px}
+.profme{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.profmei{font-size:11px;color:rgba(255,255,255,.48)}
+.profd{font-size:13px;color:rgba(255,255,255,.42);line-height:1.7;margin-bottom:16px}
+.dl{display:flex;flex-direction:column;gap:7px}
+.dr{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.07)}
+.drl{display:flex;align-items:center;gap:9px;font-size:13px;color:#fff;font-weight:500}
+.drr{font-size:12px;color:var(--teal-xl);font-weight:700}
+.drm{font-size:10px;color:rgba(255,255,255,.3)}
+.pcta{margin-top:18px;display:flex;gap:10px}
+.btnt{background:linear-gradient(135deg,var(--teal),var(--teal-l));color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer}
+.btng{background:transparent;color:rgba(255,255,255,.48);border:1.5px solid rgba(255,255,255,.14);border-radius:10px;padding:11px 20px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
+.vlist{display:flex;flex-direction:column;gap:22px}
+.vi{display:flex;gap:18px;align-items:flex-start}
+.vico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.vit{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:#fff;margin-bottom:5px}
+.vid{font-size:13px;color:rgba(255,255,255,.48);line-height:1.7}
 
-  /* Animated paw prints */
-  .paws-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-  .paw-float {
-    position: absolute;
-    opacity: 0;
-    animation: pawFloat 12s ease-in-out infinite;
-  }
-  @keyframes pawFloat {
-    0%   { opacity: 0; transform: translateY(20px) rotate(var(--rot)); }
-    15%  { opacity: var(--op); }
-    85%  { opacity: var(--op); }
-    100% { opacity: 0; transform: translateY(-30px) rotate(var(--rot)); }
-  }
+/* ── ROLLEN ── */
+.rolg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.rc{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.rc:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.28);border-color:rgba(75,156,154,.28)}
+.rch{padding:28px 26px 20px}
+.rcir{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px}
+.rct{font-family:'Nunito',sans-serif;font-size:21px;font-weight:900;color:#fff;margin-bottom:7px}
+.rcd{font-size:13px;color:rgba(255,255,255,.42);line-height:1.7}
+.rcf{padding:18px 26px 26px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:9px}
+.rf{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.58)}
+.rdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(75,156,154,.2);
-    border: 1.5px solid rgba(75,156,154,.4);
-    color: var(--teal-xl);
-    border-radius: 30px;
-    padding: 8px 20px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeUp .6s ease both;
-  }
+/* ── FLOW ── */
+.flst{display:flex;gap:0;margin-top:56px;position:relative}
+.flst::before{content:'';position:absolute;top:31px;left:31px;right:31px;height:2px;background:linear-gradient(90deg,var(--teal) 0%,var(--teal-xl) 100%);z-index:0}
+.flstep{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+.fln{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:18px;box-shadow:0 6px 24px rgba(75,156,154,.28);border:3px solid var(--teal-xx)}
+.flic{font-size:26px;margin-bottom:10px}
+.fll{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:5px}
+.flsu{font-size:11px;color:var(--grey);line-height:1.5;max-width:120px;margin:0 auto}
+.apistrip{margin-top:44px;background:rgba(75,156,154,.08);border:1.5px solid var(--border);border-radius:16px;padding:26px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.apit{font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.apid{font-size:13px;color:var(--grey);line-height:1.7}
 
-  .hero-logo-mark {
-    margin-bottom: 24px;
-    animation: fadeUp .7s .1s ease both;
-  }
+/* ── PRE-SCAN ── */
+.psg{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:56px;align-items:start}
+.petc{background:#fff;border:2px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(75,156,154,.1)}
+.petch{background:linear-gradient(135deg,var(--teal),var(--teal-l));padding:20px 24px;display:flex;align-items:center;gap:14px}
+.petav{width:52px;height:52px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.petn{font-family:'Nunito',sans-serif;font-size:19px;font-weight:900;color:#fff;margin-bottom:2px}
+.petbr{font-size:12px;color:rgba(255,255,255,.68)}
+.petphr{padding:13px 22px;background:var(--teal-xx);border-bottom:2px solid var(--border);display:flex;align-items:center;gap:13px}
+.petpht{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#d4eaea,#c0e0e0);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;border:2px solid var(--border)}
+.petphl{font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.petphh{font-size:12px;color:var(--grey);line-height:1.5}
+.petphb{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Poppins',sans-serif}
+.petbd{padding:16px 22px}
+.petrow{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--teal-bg)}
+.petrow:last-child{border-bottom:none;padding-bottom:0}
+.petri{font-size:17px;width:24px;flex-shrink:0;margin-top:1px}
+.petrl{font-size:10px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px}
+.petrv{font-size:13px;color:var(--navy);font-weight:500}
+.qcard{background:var(--navy);border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(44,62,80,.14)}
+.qh{padding:20px 24px;background:linear-gradient(135deg,var(--green),#2ECC71);display:flex;align-items:center;gap:12px}
+.qt{font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:#fff}
+.qs{font-size:11px;color:rgba(255,255,255,.72);margin-top:2px}
+.qb{padding:18px 22px;display:flex;flex-direction:column;gap:11px}
+.qi{background:rgba(255,255,255,.05);border-radius:11px;padding:12px 16px;border:1px solid rgba(255,255,255,.07)}
+.ql{font-size:10px;font-weight:700;color:var(--teal-xl);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
+.qa{font-size:13px;color:rgba(255,255,255,.72);line-height:1.55}
+.qai{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 12px;font-size:12px;color:rgba(255,255,255,.35);font-style:italic;width:100%;margin-top:4px;font-family:'Poppins',sans-serif;display:block}
+.psben{margin-top:16px;background:#fff;border:2px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(75,156,154,.08)}
+.psben-top{display:flex;gap:12px;align-items:flex-start}
+.psbeni{font-size:22px;flex-shrink:0;margin-top:2px}
+.psbent{font-size:13px;color:var(--navy);line-height:1.6}
+.psbent strong{color:var(--green)}
+.psben-wa{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1.5px solid var(--teal-bg)}
+.psben-wa-label{font-size:12px;color:var(--grey);line-height:1.5;flex:1}
+.psben-wa-label strong{color:var(--navy);display:block;font-size:13px;margin-bottom:2px}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s,transform .15s}
+.wa-btn:hover{background:#1ebe59;transform:scale(1.03)}
+.wa-btn svg{width:18px;height:18px;flex-shrink:0}
 
-  .hero h1 {
-    font-family: 'Nunito', sans-serif;
-    font-size: clamp(52px, 8vw, 96px);
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.05;
-    letter-spacing: -2px;
-    margin-bottom: 12px;
-    animation: fadeUp .7s .15s ease both;
-  }
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--teal-l), var(--teal-xl));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+/* ── AGENDA ── */
+.agm{margin-top:56px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden}
+.agtb{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.agtbl{display:flex;align-items:center;gap:14px}
+.agnav{display:flex;gap:5px}
+.agnavb{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:13px;cursor:pointer}
+.agper{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff}
+.agvbs{display:flex;gap:5px}
+.agvb{padding:5px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif}
+.agvb.act{background:var(--teal);color:#fff;border:none}
+.agvb:not(.act){background:transparent;color:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.1)}
+.agwk{display:grid;grid-template-columns:52px repeat(5,1fr);background:rgba(255,255,255,.02)}
+.agdh{padding:12px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06)}
+.agdn{font-size:10px;font-weight:700;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:.8px}
+.agdd{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:rgba(255,255,255,.55);line-height:1.2}
+.agdd.tod{color:var(--teal-l)}
+.tc{background:rgba(75,156,154,.055)}
+.agtc{border-right:1px solid rgba(255,255,255,.06)}
+.agts{height:52px;display:flex;align-items:flex-start;justify-content:flex-end;padding:5px 8px 0 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.agtl{font-size:10px;color:rgba(255,255,255,.22);font-weight:600}
+.agdc{position:relative;border-right:1px solid rgba(255,255,255,.05)}
+.aggr{display:flex;flex-direction:column}
+.agrw{height:52px;border-bottom:1px solid rgba(255,255,255,.04)}
+.agev{position:absolute;left:3px;right:3px;border-radius:8px;padding:5px 8px;overflow:hidden;cursor:pointer;transition:opacity .2s,transform .2s}
+.agev:hover{opacity:.82;transform:scale(1.015)}
+.agen{font-size:11px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agem{font-size:10px;color:rgba(255,255,255,.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.agleg{padding:15px 24px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.aglegttl{font-size:10px;font-weight:700;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.8px}
+.agli{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.52)}
+.agld{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.agvds{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}
+.agvd{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
+.agvdi{font-size:26px;margin-bottom:12px}
+.agvdt{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;margin-bottom:6px}
+.agvdd{font-size:12px;color:rgba(255,255,255,.42);line-height:1.72}
 
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
-    color: rgba(255,255,255,.65);
-    font-weight: 300;
-    max-width: 560px;
-    margin-bottom: 44px;
-    animation: fadeUp .7s .2s ease both;
-  }
+/* ── FOOTER ── */
+.ft{background:#0F1E2B;padding:60px 40px 48px;text-align:center}
+.ftp{font-size:32px;margin-bottom:10px}
+.ftb{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--teal-l);margin-bottom:6px}
+.ftt{font-size:13px;color:rgba(255,255,255,.28);margin-bottom:28px}
+.ftdiv{width:50px;height:2px;background:linear-gradient(90deg,var(--teal),transparent);margin:0 auto 22px}
+.ftm{font-size:11px;color:rgba(255,255,255,.18)}
+.ftm a{color:var(--teal);text-decoration:none}
 
-  .hero-stats {
-    display: flex;
-    gap: 0;
-    justify-content: center;
-    animation: fadeUp .7s .3s ease both;
-  }
-  .hero-stat {
-    padding: 20px 36px;
-    border-right: 1px solid rgba(255,255,255,.1);
-    text-align: center;
-  }
-  .hero-stat:last-child { border-right: none; }
-  .hero-stat-num {
-    font-family: 'Nunito', sans-serif;
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--teal-l);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .hero-stat-lbl {
-    font-size: 11px;
-    color: rgba(255,255,255,.45);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s ease-in-out infinite, fadeUp .7s .6s ease both;
-    color: rgba(255,255,255,.3);
-    font-size: 24px;
-  }
-
-  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-
-  /* ── SECTIONS ────────────────────────────────────────────────────────────── */
-  .section {
-    padding: 96px 40px;
-    max-width: 1160px;
-    margin: 0 auto;
-  }
-
-  .section-full {
-    padding: 96px 40px;
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--teal-bg);
-    color: var(--teal);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .section-heading {
-    font-family: 'Nunito', sans-serif;
-    font-size: clamp(32px, 4vw, 50px);
-    font-weight: 900;
-    color: var(--navy);
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .section-heading em {
-    font-style: normal;
-    color: var(--teal);
-  }
-
-  .section-lead {
-    font-size: 17px;
-    color: var(--grey);
-    max-width: 600px;
-    font-weight: 400;
-    line-height: 1.8;
-  }
-
-  /* ── INTRO ───────────────────────────────────────────────────────────────── */
-  .intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-    margin-top: 56px;
-  }
-
-  .intro-text p {
-    font-size: 16px;
-    color: #5D6D7E;
-    line-height: 1.9;
-    margin-bottom: 16px;
-  }
-
-  .intro-quote {
-    border-left: 4px solid var(--teal);
-    padding: 18px 24px;
-    background: var(--teal-xx);
-    border-radius: 0 12px 12px 0;
-    margin-top: 24px;
-    font-size: 15px;
-    color: var(--navy);
-    font-style: italic;
-    font-weight: 500;
-    line-height: 1.7;
-  }
-
-  .intro-visual {
-    position: relative;
-    height: 380px;
-  }
-
-  /* Map visual */
-  .map-card {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(44,62,80,.12);
-    height: 100%;
-    position: relative;
-  }
-
-  .map-topbar {
-    background: var(--navy);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .map-dot { width:12px;height:12px;border-radius:50%; }
-
-  .map-area {
-    background: #D8EDDA;
-    position: relative;
-    height: calc(100% - 48px);
-    overflow: hidden;
-  }
-
-  /* SVG map roads */
-  .map-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .map-pin {
-    position: absolute;
-    transform: translate(-50%, -100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: transform .2s;
-  }
-  .map-pin:hover { transform: translate(-50%,-100%) scale(1.1); }
-
-  .map-pin-dot {
-    width: 40px; height: 40px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,.25);
-    font-size: 16px;
-  }
-  .map-pin-dot span { transform: rotate(45deg); }
-
-  .map-pin-bubble {
-    background: white;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--navy);
-    box-shadow: 0 3px 10px rgba(0,0,0,.12);
-    margin-bottom: 4px;
-    white-space: nowrap;
-  }
-  .map-pin-bubble::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: white;
-  }
-  .map-gps {
-    position: absolute;
-    width: 18px; height: 18px;
-    background: var(--red);
-    border-radius: 50%;
-    box-shadow: 0 0 0 6px rgba(224,85,85,.2);
-    top: 52%;
-    left: 48%;
-  }
-
-  /* ── ROLLEN ──────────────────────────────────────────────────────────────── */
-  .rollen-alt {
-    background: var(--navy);
-    padding: 96px 40px;
-  }
-
-  .rollen-inner {
-    max-width: 1160px;
-    margin: 0 auto;
-  }
-
-  .rollen-alt .section-heading { color: #fff; }
-  .rollen-alt .chip { background: rgba(75,156,154,.2); color: var(--teal-xl); }
-  .rollen-alt .section-lead { color: rgba(255,255,255,.5); }
-
-  .rollen-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 56px;
-  }
-
-  .rol-card {
-    background: rgba(255,255,255,.04);
-    border: 1.5px solid rgba(255,255,255,.08);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform .3s, box-shadow .3s, border-color .3s;
-  }
-  .rol-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(0,0,0,.3);
-    border-color: rgba(75,156,154,.3);
-  }
-
-  .rol-header {
-    padding: 32px 28px 24px;
-    position: relative;
-  }
-  .rol-icon-ring {
-    width: 64px; height: 64px;
-    border-radius: 18px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  .rol-title {
-    font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .rol-desc {
-    font-size: 13px;
-    color: rgba(255,255,255,.5);
-    line-height: 1.7;
-  }
-
-  .rol-features {
-    padding: 0 28px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-top: 1px solid rgba(255,255,255,.06);
-    padding-top: 20px;
-  }
-  .rol-feat {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: rgba(255,255,255,.65);
-  }
-  .rol-feat-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* ── BOEKINGSFLOW ────────────────────────────────────────────────────────── */
-  .flow-section {
-    background: var(--teal-xx);
-    padding: 96px 40px;
-  }
-  .flow-inner { max-width: 1160px; margin: 0 auto; }
-
-  .flow-steps {
-    display: flex;
-    gap: 0;
-    margin-top: 56px;
-    position: relative;
-  }
-  .flow-steps::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    right: 32px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--teal) 0%, var(--teal-xl) 100%);
-    z-index: 0;
-  }
-
-  .flow-step {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .flow-num {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 24px rgba(75,156,154,.35);
-    border: 3px solid var(--teal-xx);
-  }
-
-  .flow-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    line-height: 1;
-  }
-
-  .flow-lbl {
-    font-family: 'Nunito', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-
-  .flow-sub {
-    font-size: 12px;
-    color: var(--grey);
-    line-height: 1.5;
-    max-width: 130px;
-    margin: 0 auto;
-  }
-
-  /* ── HUISDIERPROFIEL ─────────────────────────────────────────────────────── */
-  .pet-section { padding: 96px 40px; }
-  .pet-inner { max-width: 1160px; margin: 0 auto; }
-
-  .pet-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-top: 56px;
-    align-items: start;
-  }
-
-  .pet-card {
-    background: #fff;
-    border: 2px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(75,156,154,.1);
-  }
-
-  .pet-card-header {
-    background: linear-gradient(135deg, var(--teal), var(--teal-l));
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .pet-avatar {
-    width: 56px; height: 56px;
-    background: rgba(255,255,255,.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-
-  .pet-name {
-    font-family: 'Nunito', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 3px;
-  }
-  .pet-breed {
-    font-size: 12px;
-    color: rgba(255,255,255,.75);
-  }
-
-  .pet-body { padding: 24px 28px; }
-
-  .pet-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--teal-bg);
-  }
-  .pet-row:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .pet-row-icon {
-    font-size: 18px;
-    width: 28px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .pet-row-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--grey);
-    text-transform: uppercase;
-    letter-spacing: .8px;
-    margin-bottom: 2px;
-  }
-  .pet-row-val {
-    font-size: 14px;
-    color: var(--navy);
-    font-weight: 500;
-  }
-
-  /* Pre-scan card */
-  .prescan-card {
-    background: var(--navy);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(44,62,80,.15);
-  }
-
-  .prescan-header {
-    padding: 24px 28px;
-    background: linear-gradient(135deg, var(--green), #2ECC71);
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .prescan-title {
-    font-family: 'Nunito', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    color: #fff;
-  }
-  .prescan-sub {
-    font-size: 12px;
-    color: rgba(255,255,255,.75);
-    margin-top: 2px;
-  }
-
-  .prescan-items {
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .prescan-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .prescan-item-icon {
-    width: 38px; height: 38px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.07);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .prescan-item-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 3px;
-  }
-  .prescan-item-desc {
-    font-size: 12px;
-    color: rgba(255,255,255,.5);
-    line-height: 1.6;
-  }
-
-  /* ── MODULES ─────────────────────────────────────────────────────────────── */
-  .modules-section {
-    background: var(--navy);
-    padding: 96px 40px;
-  }
-  .modules-inner { max-width: 1160px; margin: 0 auto; }
-  .modules-section .section-heading { color: #fff; }
-  .modules-section .chip { background: rgba(75,156,154,.2); color: var(--teal-xl); }
-
-  .modules-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 48px;
-  }
-
-  .mod-chip {
-    padding: 12px 14px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform .2s;
-  }
-  .mod-chip:hover { transform: translateY(-2px); }
-  .mod-chip.done { color: #fff; }
-  .mod-chip.pending {
-    background: rgba(255,255,255,.04);
-    border: 1.5px dashed rgba(255,255,255,.12);
-    color: rgba(255,255,255,.3);
-  }
-  .mod-check { font-size: 14px; flex-shrink: 0; }
-
-  .tech-bar {
-    margin-top: 32px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-    padding: 16px 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 28px;
-    align-items: center;
-  }
-  .tech-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--grey-l);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-right: 8px;
-  }
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--teal-xl);
-    font-weight: 600;
-  }
-  .tech-dot { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; }
-
-  /* ── FOOTER ──────────────────────────────────────────────────────────────── */
-  .footer {
-    background: #1A2D3E;
-    padding: 60px 40px 48px;
-    text-align: center;
-  }
-  .footer-paw {
-    font-size: 36px;
-    margin-bottom: 12px;
-  }
-  .footer-brand {
-    font-family: 'Nunito', sans-serif;
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--teal-l);
-    margin-bottom: 6px;
-  }
-  .footer-tagline {
-    font-size: 14px;
-    color: rgba(255,255,255,.35);
-    margin-bottom: 32px;
-  }
-  .footer-divider {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--teal), transparent);
-    margin: 0 auto 24px;
-  }
-  .footer-meta {
-    font-size: 12px;
-    color: rgba(255,255,255,.2);
-  }
-  .footer-meta a { color: var(--teal); text-decoration: none; }
-
-  /* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity .7s ease, transform .7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-  .reveal-d1 { transition-delay: .1s; }
-  .reveal-d2 { transition-delay: .2s; }
-  .reveal-d3 { transition-delay: .3s; }
-  .reveal-d4 { transition-delay: .4s; }
-
-  /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    .intro-grid, .pet-grid { grid-template-columns: 1fr; }
-    .rollen-grid { grid-template-columns: 1fr; }
-    .flow-steps { flex-direction: column; gap: 32px; }
-    .flow-steps::before { display: none; }
-    .modules-grid { grid-template-columns: repeat(3, 1fr); }
-    .hero-stats { flex-direction: column; gap: 16px; }
-    .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 16px 0; }
-  }
+@media(max-width:900px){
+  .ig,.profg,.psg{grid-template-columns:1fr}
+  .rolg{grid-template-columns:1fr}
+  .flst{flex-direction:column;gap:28px}.flst::before{display:none}
+  .agvds,.apistrip{grid-template-columns:1fr}
+  .hstats{flex-direction:column;gap:10px}.hstat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding:14px 0}
+  .cbar-text{display:none}
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════ HERO -->
+<!-- CONSTRUCTION BANNER -->
+<div class="cbar">
+  <div class="cbar-inner">
+    <div class="cbar-stripe"></div>
+    <div class="cbar-dot"></div>
+    <div class="cbar-badge" id="t-cbar-badge">🚧 In ontwikkeling</div>
+    <div class="cbar-text" id="t-cbar-text">PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong>Neem contact op →</strong></div>
+    <div class="cbar-dot"></div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 English</button>
+  </div>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-
-  <div class="paws-bg" aria-hidden="true">
-    <!-- Floating paw prints via JS below -->
-  </div>
-
-  <div class="hero-badge">
-    <span>🐾</span> Platform Overzicht 2026
-  </div>
-
-  <div class="hero-logo-mark">
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="72" height="72" rx="20" fill="rgba(75,156,154,0.15)"/>
-      <!-- Paw print SVG -->
-      <ellipse cx="36" cy="40" rx="12" ry="11" fill="#4B9C9A"/>
-      <ellipse cx="22" cy="32" rx="6" ry="7" fill="#4B9C9A"/>
-      <ellipse cx="50" cy="32" rx="6" ry="7" fill="#4B9C9A"/>
-      <ellipse cx="28" cy="22" rx="5.5" ry="6" fill="#5DB5B3"/>
-      <ellipse cx="44" cy="22" rx="5.5" ry="6" fill="#5DB5B3"/>
+  <div class="orb orb1"></div><div class="orb orb2"></div>
+  <div class="paws-bg" aria-hidden="true"></div>
+  <div class="hbadge" id="t-hbadge">🐾 Platform Overzicht 2026</div>
+  <div class="hlogo">
+    <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+      <rect width="70" height="70" rx="19" fill="rgba(75,156,154,0.14)"/>
+      <ellipse cx="35" cy="39" rx="12" ry="11" fill="#4B9C9A"/>
+      <ellipse cx="21" cy="31" rx="6" ry="7" fill="#4B9C9A"/>
+      <ellipse cx="49" cy="31" rx="6" ry="7" fill="#4B9C9A"/>
+      <ellipse cx="27" cy="21" rx="5.5" ry="6" fill="#5DB5B3"/>
+      <ellipse cx="43" cy="21" rx="5.5" ry="6" fill="#5DB5B3"/>
     </svg>
   </div>
-
   <h1>Paw<span>Connect</span></h1>
-  <p class="hero-sub">Het digitale platform voor dierenverzorgingsbedrijven — van uitnodiging tot afspraak, alles in één omgeving.</p>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">3</div>
-      <div class="hero-stat-lbl">Gebruikersrollen</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">14+</div>
-      <div class="hero-stat-lbl">Gebouwde modules</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">20+</div>
-      <div class="hero-stat-lbl">Database tabellen</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">100%</div>
-      <div class="hero-stat-lbl">Custom gebouwd</div>
-    </div>
+  <p class="hsub" id="t-hsub">Het all-in-one platform voor dierenverzorgingsbedrijven. Van bedrijfsprofiel en gedeelde agenda tot contactloze pre-scan — alles in één omgeving.</p>
+  <div class="hstats">
+    <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l" id="t-s1">Gebruikersrollen</div></div>
+    <div class="hstat"><div class="hstat-n">0</div><div class="hstat-l" id="t-s2">Eigen website nodig</div></div>
+    <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l" id="t-s3">Pre-scan digitaal</div></div>
+    <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l" id="t-s4">Online boeken</div></div>
   </div>
-
-  <div class="hero-scroll">↓</div>
+  <div class="hscroll">↓</div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ INTRO -->
-<section class="section">
+<!-- INTRO + KAART -->
+<section class="sec">
   <div class="reveal">
-    <div class="chip">🌿 Het verhaal</div>
-    <h2 class="section-heading">Dierenverzorging,<br><em>digitaal georganiseerd</em></h2>
+    <div class="chip" id="t-intro-chip">🌿 Het verhaal</div>
+    <h2 class="sh shd" id="t-intro-h">Dierenverzorging,<br><em>volledig digitaal</em></h2>
   </div>
-
-  <div class="intro-grid">
-    <div class="intro-text reveal reveal-d1">
-      <p>PawConnect is een volledig op maat gebouwd PHP-platform dat dierenverzorgingsbedrijven helpt hun dienstverlening te digitaliseren. Van de eerste uitnodiging van een medewerker tot de bevestigde boeking van een klant — alles verloopt gestroomlijnd via één platform.</p>
-      <p>Klanten zoeken bedrijven op een interactieve kaart, boeken een afspraak inclusief hun huisdierprofiel, en ontvangen automatisch een bevestigingsmail. De dienstverlener heeft direct alle relevante informatie bij de hand — zonder papieren intake of telefoontje.</p>
-      <div class="intro-quote">
-        "Het huisdierprofiel ontlast de dienstverlener: ras, gedrag, medicatie en dierenarts zijn direct beschikbaar bij elke afspraak."
-      </div>
+  <div class="ig">
+    <div class="it reveal d1">
+      <p id="t-intro-p1">PawConnect is een volledig op maat gebouwd platform dat dierenverzorgingsbedrijven helpt hun dienstverlening te digitaliseren. Van de eerste uitnodiging van een medewerker tot de bevestigde boeking van een klant — alles verloopt via één platform.</p>
+      <p id="t-intro-p2">Klanten zoeken bedrijven op een interactieve kaart, boeken een afspraak inclusief huisdierprofiel en pre-scan, en ontvangen automatisch bevestiging. De dienstverlener heeft direct alle informatie bij de hand — zonder telefoontje of papieren intake.</p>
+      <div class="iq" id="t-intro-q">"PawConnect verbindt bedrijf, medewerker en klant in één digitale omgeving — van zoeken en boeken tot de gedeelde werkagenda."</div>
     </div>
-
-    <!-- Kaart visual -->
-    <div class="intro-visual reveal reveal-d2">
-      <div class="map-card">
-        <div class="map-topbar">
-          <div class="map-dot" style="background:#E05555"></div>
-          <div class="map-dot" style="background:#E07B00"></div>
-          <div class="map-dot" style="background:#27AE60"></div>
-          <span style="margin-left:8px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.6)">Bedrijven in jouw buurt</span>
+    <div class="reveal d2">
+      <div class="mc">
+        <div class="mtb">
+          <div class="mdot" style="background:#E05555"></div><div class="mdot" style="background:#E07B00"></div><div class="mdot" style="background:#27AE60"></div>
+          <span class="mtbt" id="t-mapbar">Bedrijven in jouw buurt — PawConnect Kaart</span>
         </div>
-        <div class="map-area">
-          <svg class="map-svg" viewBox="0 0 400 310" preserveAspectRatio="xMidYMid slice">
-            <!-- Water -->
-            <path d="M240,130 Q280,110 320,140 Q360,165 380,150 L400,180 L380,280 L240,280 Z" fill="#B8D4E8" opacity=".6"/>
-            <!-- Roads -->
-            <line x1="0" y1="155" x2="400" y2="155" stroke="white" stroke-width="5" opacity=".8"/>
-            <line x1="180" y1="0" x2="180" y2="310" stroke="white" stroke-width="4" opacity=".8"/>
-            <line x1="0" y1="90" x2="180" y2="90" stroke="white" stroke-width="3" opacity=".6"/>
-            <line x1="180" y1="220" x2="400" y2="220" stroke="white" stroke-width="3" opacity=".6"/>
-            <!-- Blocks -->
-            <rect x="30" y="20" width="70" height="55" rx="4" fill="#C4DFC5" opacity=".7"/>
-            <rect x="120" y="30" width="44" height="46" rx="4" fill="#C4DFC5" opacity=".6"/>
-            <rect x="30" y="170" width="55" height="40" rx="4" fill="#C4DFC5" opacity=".7"/>
-            <rect x="100" y="175" width="64" height="35" rx="4" fill="#C4DFC5" opacity=".6"/>
-            <rect x="200" y="20" width="50" height="55" rx="4" fill="#C4DFC5" opacity=".6"/>
-            <rect x="270" y="30" width="80" height="45" rx="4" fill="#C4DFC5" opacity=".5"/>
-            <rect x="200" y="170" width="30" height="35" rx="4" fill="#C4DFC5" opacity=".5"/>
+        <div class="ma">
+          <svg class="msvg" viewBox="0 0 420 310" preserveAspectRatio="xMidYMid slice">
+            <path d="M250,120 Q295,100 340,135 Q375,160 400,148 L420,175 L420,310 L250,310 Z" fill="#B8D4E8" opacity=".5"/>
+            <line x1="0" y1="158" x2="420" y2="158" stroke="white" stroke-width="5" opacity=".8"/>
+            <line x1="185" y1="0" x2="185" y2="310" stroke="white" stroke-width="4" opacity=".8"/>
+            <line x1="0" y1="88" x2="185" y2="88" stroke="white" stroke-width="3" opacity=".6"/>
+            <line x1="185" y1="225" x2="420" y2="225" stroke="white" stroke-width="3" opacity=".5"/>
+            <rect x="28" y="18" width="72" height="56" rx="4" fill="#C4DFC5" opacity=".7"/>
+            <rect x="118" y="26" width="48" height="48" rx="4" fill="#C4DFC5" opacity=".6"/>
+            <rect x="28" y="172" width="58" height="42" rx="4" fill="#C4DFC5" opacity=".7"/>
+            <rect x="100" y="178" width="68" height="36" rx="4" fill="#C4DFC5" opacity=".6"/>
+            <rect x="205" y="18" width="55" height="56" rx="4" fill="#C4DFC5" opacity=".55"/>
+            <rect x="278" y="26" width="84" height="46" rx="4" fill="#C4DFC5" opacity=".45"/>
           </svg>
-
-          <!-- GPS dot -->
-          <div class="map-gps"></div>
-
-          <!-- Pin 1 - Trimsalon (active) -->
-          <div class="map-pin" style="left:27%;top:45%">
-            <div class="map-pin-bubble" style="position:relative">🐩 Trimsalon Rosa</div>
-            <div class="map-pin-dot" style="background:var(--teal)"><span>✂️</span></div>
-          </div>
-
-          <!-- Pin 2 - Dierenarts -->
-          <div class="map-pin" style="left:60%;top:28%">
-            <div class="map-pin-dot" style="background:var(--navy)"><span>🏥</span></div>
-          </div>
-
-          <!-- Pin 3 - Uitlaatservice -->
-          <div class="map-pin" style="left:75%;top:62%">
-            <div class="map-pin-dot" style="background:var(--orange)"><span>🐕</span></div>
-          </div>
-
-          <!-- Search bar overlay -->
-          <div style="position:absolute;bottom:14px;left:14px;right:14px;background:white;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
-            <span style="color:var(--teal);font-size:16px">🔍</span>
-            <span style="font-family:'Poppins',sans-serif;font-size:13px;color:var(--grey)">Zoek een trimsalon, dierenarts…</span>
-          </div>
+          <div class="mgps" style="top:51%;left:44%"></div>
+          <div class="mp" style="left:26%;top:47%"><div class="mpb">🐩 Trimsalon Rosa · ⭐ 4.8</div><div class="mpd" style="background:var(--teal)"><span>✂️</span></div></div>
+          <div class="mp" style="left:62%;top:30%"><div class="mpd" style="background:var(--navy)"><span>🏥</span></div></div>
+          <div class="mp" style="left:77%;top:63%"><div class="mpd" style="background:var(--orange)"><span>🐕</span></div></div>
+          <div class="msrch"><span style="color:var(--teal);font-size:15px">🔍</span><span id="t-mapsrch" style="font-size:12px;color:var(--grey)">Zoek trimsalon, dierenarts, pension…</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ ROLLEN -->
-<section class="rollen-alt">
-  <div class="rollen-inner">
+<!-- BEDRIJFSPROFIEL -->
+<section class="secbg" style="background:var(--navy-d)">
+  <div class="secinr">
     <div class="reveal">
-      <div class="chip">👥 Gebruikers</div>
-      <h2 class="section-heading">Drie rollen,<br><em>één platform</em></h2>
-      <p class="section-lead">PawConnect bedient drie gebruikersgroepen met eigen dashboards, rechten en workflows.</p>
+      <div class="chip chipl" id="t-prof-chip">🏢 Digitale etalage</div>
+      <h2 class="sh shw" id="t-prof-h">Geen eigen website<br><em>meer nodig</em></h2>
+      <p class="sl slw" id="t-prof-sub">PawConnect geeft elk bedrijf een volledig ingericht profiel — met diensten, openingstijden en directe boekknop. Professioneel online aanwezig zonder extra kosten of technische kennis.</p>
     </div>
-
-    <div class="rollen-grid">
-
-      <!-- Bedrijf -->
-      <div class="rol-card reveal reveal-d1">
-        <div class="rol-header">
-          <div class="rol-icon-ring" style="background:rgba(75,156,154,.15)">🏢</div>
-          <div class="rol-title">Bedrijf / Beheerder</div>
-          <div class="rol-desc">Beheert de volledige bedrijfsomgeving. Kijkt over de schouders van het team en keurt alles goed.</div>
-        </div>
-        <div class="rol-features">
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal)"></div>Diensten & openingstijden beheren</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal)"></div>Medewerkers uitnodigen & agendakleur instellen</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal)"></div>Werkschema's & uitzonderingen goedkeuren</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal)"></div>Afsprakenoverzicht & klantbeheer</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal)"></div>Goedkeuringen-dashboard met teller</div>
-        </div>
-      </div>
-
-      <!-- Medewerker -->
-      <div class="rol-card reveal reveal-d2">
-        <div class="rol-header">
-          <div class="rol-icon-ring" style="background:rgba(93,181,179,.12)">👥</div>
-          <div class="rol-title">Medewerker</div>
-          <div class="rol-desc">Ontvangt een uitnodiging per mail, stelt eigen wachtwoord in en beheert zijn of haar werkschema.</div>
-        </div>
-        <div class="rol-features">
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal-l)"></div>Uitnodiging via token-link per mail</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal-l)"></div>Werkschema per dag instellen & indienen</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal-l)"></div>Vrije dagen & extra werkdagen aanvragen</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal-l)"></div>Persoonlijke agendakleur (kleurenblind-veilig)</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--teal-l)"></div>Mail-bevestiging bij goed- of afkeuring</div>
+    <div class="profg">
+      <div class="profm reveal d1">
+        <div class="profh"><div class="profav">✂️</div></div>
+        <div class="profb">
+          <div class="profn">Trimsalon Rosa</div>
+          <div class="proft" id="t-biztype">✂️ Trimsalon · Amsterdam-Noord</div>
+          <div class="profme">
+            <span class="profmei">⭐ <span style="color:#F0920A;font-weight:700">4.8</span> (42 reviews)</span>
+            <span class="profmei" id="t-bizmeta1">📍 2.3 km van jou</span>
+            <span class="profmei" id="t-bizmeta2">🕐 Open tot 18:00</span>
+          </div>
+          <div class="profd" id="t-bizdesc">Gespecialiseerd in alle rassen. Al 12 jaar de vertrouwde trimsalon van de buurt met oog voor het welzijn van jouw huisdier.</div>
+          <div class="dl">
+            <div class="dr"><div class="drl"><span>✂️</span><div><div id="t-svc1n">Volledig trimmen</div><div class="drm" id="t-svc1m">60 min · incl. bad &amp; drogen</div></div></div><div class="drr">€ 55,–</div></div>
+            <div class="dr"><div class="drl"><span>🛁</span><div><div id="t-svc2n">Wassen &amp; drogen</div><div class="drm" id="t-svc2m">45 min</div></div></div><div class="drr">€ 35,–</div></div>
+            <div class="dr"><div class="drl"><span>💅</span><div><div id="t-svc3n">Nagels knippen</div><div class="drm" id="t-svc3m">15 min</div></div></div><div class="drr">€ 12,–</div></div>
+          </div>
+          <div class="pcta">
+            <button class="btnt" id="t-bookbtn">📅 Afspraak maken</button>
+            <button class="btng">💬 WhatsApp</button>
+          </div>
         </div>
       </div>
-
-      <!-- Klant -->
-      <div class="rol-card reveal reveal-d3">
-        <div class="rol-header">
-          <div class="rol-icon-ring" style="background:rgba(39,174,96,.12)">🐾</div>
-          <div class="rol-title">Klant</div>
-          <div class="rol-desc">Registreert zich, voegt huisdieren toe en boekt afspraken via een intuïtieve wizard met kaartzoekfunctie.</div>
-        </div>
-        <div class="rol-features">
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--green)"></div>Bedrijven zoeken op kaart (PDOK API)</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--green)"></div>Dienst & tijdslot kiezen via wizard</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--green)"></div>Huisdierprofiel aanmaken & bijhouden</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--green)"></div>Pre-scan meegestuurd bij boeking</div>
-          <div class="rol-feat"><div class="rol-feat-dot" style="background:var(--green)"></div>Bevestiging + WhatsApp-knop</div>
-        </div>
+      <div class="vlist reveal d2">
+        <div class="vi"><div class="vico" style="background:rgba(75,156,154,.15)">🌐</div><div><div class="vit" id="t-v1t">Geen eigen website nodig</div><div class="vid" id="t-v1d">Het PawConnect-profiel is de digitale etalage van het bedrijf. Vindbaar via de kaart, geoptimaliseerd voor mobiel, altijd actueel.</div></div></div>
+        <div class="vi"><div class="vico" style="background:rgba(39,174,96,.12)">📅</div><div><div class="vit" id="t-v2t">Directe boekknop op het profiel</div><div class="vid" id="t-v2d">Klanten boeken 24/7 rechtstreeks vanuit het profiel — geen telefoontje. Beschikbaarheid real-time berekend.</div></div></div>
+        <div class="vi"><div class="vico" style="background:rgba(240,146,10,.12)">⭐</div><div><div class="vit" id="t-v3t">Reviews &amp; betrouwbaarheid</div><div class="vid" id="t-v3d">Klantbeoordelingen bouwen vertrouwen op. Nieuwe klanten zien direct de reputatie van het bedrijf.</div></div></div>
+        <div class="vi"><div class="vico" style="background:rgba(93,181,179,.12)">🛎️</div><div><div class="vit" id="t-v4t">Diensten &amp; prijzen altijd actueel</div><div class="vid" id="t-v4d">De beheerder past diensten en openingstijden zelf aan — wijzigingen direct zichtbaar voor klanten.</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ FLOW -->
-<section class="flow-section">
-  <div class="flow-inner">
+<!-- ROLLEN -->
+<section class="secbg" style="background:var(--navy)">
+  <div class="secinr">
     <div class="reveal">
-      <div class="chip">📅 Boekingsflow</div>
-      <h2 class="section-heading">Van zoeken<br><em>naar bevestiging</em></h2>
-      <p class="section-lead">De klant doorloopt vijf stappen. De beschikbaarheidsberekening houdt real-time rekening met business hours, werkschema's en uitzonderingen.</p>
+      <div class="chip chipl" id="t-rol-chip">👥 Gebruikers</div>
+      <h2 class="sh shw" id="t-rol-h">Drie rollen,<br><em>één platform</em></h2>
+      <p class="sl slw" id="t-rol-sub">Bedrijf, medewerker en klant hebben elk een eigen dashboard, rechten en workflow — naadloos verbonden.</p>
     </div>
-
-    <div class="flow-steps">
-      <div class="flow-step reveal reveal-d1">
-        <div class="flow-num" style="background:linear-gradient(135deg,var(--navy),var(--navy-l))">1</div>
-        <div class="flow-icon">🗺️</div>
-        <div class="flow-lbl">Bedrijf zoeken</div>
-        <div class="flow-sub">Op kaart filteren op type: trimsalon, dierenarts, pension…</div>
+    <div class="rolg">
+      <div class="rc reveal d1">
+        <div class="rch"><div class="rcir" style="background:rgba(75,156,154,.15)">🏢</div><div class="rct" id="t-r1t">Bedrijf / Beheerder</div><div class="rcd" id="t-r1d">Beheert de volledige bedrijfsomgeving. Stuurt het team aan en keurt alles goed via het dashboard.</div></div>
+        <div class="rcf" id="t-r1f">
+          <div class="rf"><div class="rdot" style="background:var(--teal)"></div>Profiel, diensten &amp; openingstijden</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal)"></div>Medewerkers uitnodigen &amp; kleurbeheer</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal)"></div>Werkschema's &amp; uitzonderingen goedkeuren</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal)"></div>Gedeelde agenda met kleurcodering</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal)"></div>Afspraken, klantbeheer &amp; pre-scan inzage</div>
+        </div>
       </div>
-      <div class="flow-step reveal reveal-d2">
-        <div class="flow-num" style="background:linear-gradient(135deg,var(--teal),var(--teal-l))">2</div>
-        <div class="flow-icon">🛎️</div>
-        <div class="flow-lbl">Dienst kiezen</div>
-        <div class="flow-sub">Overzicht met duur, prijs en categorie per bedrijf</div>
+      <div class="rc reveal d2">
+        <div class="rch"><div class="rcir" style="background:rgba(93,181,179,.12)">👥</div><div class="rct" id="t-r2t">Medewerker</div><div class="rcd" id="t-r2d">Ontvangt uitnodiging per mail, stelt werkschema in en beheert eigen tijdblokken in de agenda.</div></div>
+        <div class="rcf" id="t-r2f">
+          <div class="rf"><div class="rdot" style="background:var(--teal-l)"></div>Uitnodiging via beveiligde token-link</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal-l)"></div>Werkschema per dag + tijdblokken instellen</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal-l)"></div>Vrije dagen &amp; extra werkdagen aanvragen</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal-l)"></div>Eigen kleur in de gedeelde agenda</div>
+          <div class="rf"><div class="rdot" style="background:var(--teal-l)"></div>Pre-scan per afspraak inzichtelijk</div>
+        </div>
       </div>
-      <div class="flow-step reveal reveal-d3">
-        <div class="flow-num" style="background:linear-gradient(135deg,var(--teal-l),var(--teal-xl))">3</div>
-        <div class="flow-icon">📅</div>
-        <div class="flow-lbl">Datum &amp; tijdslot</div>
-        <div class="flow-sub">API berekent vrije slots in 15-minuten stappen</div>
-      </div>
-      <div class="flow-step reveal reveal-d4">
-        <div class="flow-num" style="background:linear-gradient(135deg,var(--green),#2ECC71)">4</div>
-        <div class="flow-icon">🐾</div>
-        <div class="flow-lbl">Huisdier + pre-scan</div>
-        <div class="flow-sub">Profiel automatisch meegestuurd aan dienstverlener</div>
-      </div>
-      <div class="flow-step reveal" style="transition-delay:.5s">
-        <div class="flow-num" style="background:linear-gradient(135deg,var(--orange),#F0920A)">5</div>
-        <div class="flow-icon">✅</div>
-        <div class="flow-lbl">Bevestiging &amp; mail</div>
-        <div class="flow-sub">Klant én bedrijf ontvangen direct een HTML-mail</div>
-      </div>
-    </div>
-
-    <!-- API uitleg strip -->
-    <div class="reveal" style="margin-top:48px;background:rgba(75,156,154,.08);border:1.5px solid var(--border);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Beschikbaarheid API</div>
-        <div style="font-size:14px;color:var(--grey);line-height:1.7">Business hours · medewerker schema's · goedgekeurde uitzonderingen · bestaande afspraken</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Slimme berekening</div>
-        <div style="font-size:14px;color:var(--grey);line-height:1.7">Klant ziet nooit ruwe agenda-data — alleen beschikbare tijdsloten, berekend per dienst (duur + buffer)</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Concurrency-safe</div>
-        <div style="font-size:14px;color:var(--grey);line-height:1.7">Database-level overlap check bij bevestigen — voorkomt dubbele boekingen bij gelijktijdige aanvragen</div>
+      <div class="rc reveal d3">
+        <div class="rch"><div class="rcir" style="background:rgba(39,174,96,.12)">🐾</div><div class="rct" id="t-r3t">Klant</div><div class="rcd" id="t-r3d">Registreert zich, voegt huisdieren toe met foto en pre-scan, en boekt afspraken via de kaart.</div></div>
+        <div class="rcf" id="t-r3f">
+          <div class="rf"><div class="rdot" style="background:var(--green)"></div>Bedrijven zoeken op kaart (PDOK)</div>
+          <div class="rf"><div class="rdot" style="background:var(--green)"></div>Dienst &amp; tijdslot kiezen — 24/7</div>
+          <div class="rf"><div class="rdot" style="background:var(--green)"></div>Huisdierprofiel + recente foto uploaden</div>
+          <div class="rf"><div class="rdot" style="background:var(--green)"></div>Pre-scan vragen invullen bij boeking</div>
+          <div class="rf"><div class="rdot" style="background:var(--green)"></div>Bevestiging + WhatsApp-snelknop</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ HUISDIER -->
-<section class="pet-section">
-  <div class="pet-inner">
+<!-- FLOW -->
+<section class="secbg" style="background:var(--teal-xx)">
+  <div class="secinr">
     <div class="reveal">
-      <div class="chip">🐕 Huisdierprofiel</div>
-      <h2 class="section-heading">Pre-scan ontlast<br><em>de dienstverlener</em></h2>
-      <p class="section-lead">Bij elke boeking stuurt PawConnect automatisch het volledige huisdierprofiel mee. Geen formulieren bij aankomst, geen vragen stellen.</p>
+      <div class="chip" id="t-fl-chip">📅 Boekingsflow</div>
+      <h2 class="sh shd" id="t-fl-h">Van zoeken naar<br><em>bevestiging — contactloos</em></h2>
+      <p class="sl sld" id="t-fl-sub">Vijf stappen. Geen telefoontje. Real-time beschikbaarheid op basis van werkschema's, openingstijden en uitzonderingen.</p>
     </div>
+    <div class="flst">
+      <div class="flstep reveal d1"><div class="fln" style="background:linear-gradient(135deg,var(--navy),var(--navy-l))">1</div><div class="flic">🗺️</div><div class="fll" id="t-fl1l">Bedrijf zoeken</div><div class="flsu" id="t-fl1s">Op kaart filteren op type en locatie</div></div>
+      <div class="flstep reveal d2"><div class="fln" style="background:linear-gradient(135deg,var(--teal),var(--teal-l))">2</div><div class="flic">🛎️</div><div class="fll" id="t-fl2l">Dienst kiezen</div><div class="flsu" id="t-fl2s">Duur, prijs en categorie</div></div>
+      <div class="flstep reveal d3"><div class="fln" style="background:linear-gradient(135deg,var(--teal-l),#7EC8C7)">3</div><div class="flic">📅</div><div class="fll" id="t-fl3l">Datum &amp; tijdslot</div><div class="flsu" id="t-fl3s">API berekent vrije slots per 15 min</div></div>
+      <div class="flstep reveal d4"><div class="fln" style="background:linear-gradient(135deg,var(--green),#2ECC71)">4</div><div class="flic">🐾</div><div class="fll" id="t-fl4l">Pre-scan insturen</div><div class="flsu" id="t-fl4s">Foto + vragenlijst automatisch meegestuurd</div></div>
+      <div class="flstep reveal d5"><div class="fln" style="background:linear-gradient(135deg,var(--orange),var(--amber))">5</div><div class="flic">✅</div><div class="fll" id="t-fl5l">Bevestiging &amp; mail</div><div class="flsu" id="t-fl5s">Klant én bedrijf ontvangen direct een mail</div></div>
+    </div>
+    <div class="apistrip reveal">
+      <div><div class="apit" id="t-api1t">Beschikbaarheid API</div><div class="apid" id="t-api1d">Business hours · werkschema's · uitzonderingen · bestaande afspraken — alles gecombineerd in één berekening</div></div>
+      <div><div class="apit" id="t-api2t">Privacy-by-design</div><div class="apid" id="t-api2d">Klant ziet nooit ruwe agenda-data — alleen beschikbare tijdsloten, berekend per dienst inclusief buffer</div></div>
+      <div><div class="apit" id="t-api3t">Concurrency-safe</div><div class="apid" id="t-api3d">Database-level overlap check — geen dubbele boekingen bij gelijktijdige aanvragen</div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="pet-grid">
-      <!-- Profiel kaart -->
-      <div class="pet-card reveal reveal-d1">
-        <div class="pet-card-header">
-          <div class="pet-avatar">🐕</div>
-          <div>
-            <div class="pet-name">Max</div>
-            <div class="pet-breed">Golden Retriever · 3 jaar · Reu</div>
-          </div>
-        </div>
-        <div class="pet-body">
-          <div class="pet-row">
-            <div class="pet-row-icon">🩺</div>
-            <div>
-              <div class="pet-row-label">Dierenarts</div>
-              <div class="pet-row-val">De Wit Dierkliniek, Amsterdam</div>
-            </div>
-          </div>
-          <div class="pet-row">
-            <div class="pet-row-icon">💊</div>
-            <div>
-              <div class="pet-row-label">Medicatie</div>
-              <div class="pet-row-val">Geen actieve medicatie</div>
-            </div>
-          </div>
-          <div class="pet-row">
-            <div class="pet-row-icon">🧠</div>
-            <div>
-              <div class="pet-row-label">Gedragsprofiel</div>
-              <div class="pet-row-val">Schrikachtig voor stofzuigers en harde geluiden</div>
-            </div>
-          </div>
-          <div class="pet-row">
-            <div class="pet-row-icon">⚠️</div>
-            <div>
-              <div class="pet-row-label">Allergie</div>
-              <div class="pet-row-val">Bijenwas shampoo — gebruik alternatief</div>
-            </div>
-          </div>
-          <div class="pet-row">
-            <div class="pet-row-icon">🏷️</div>
-            <div>
-              <div class="pet-row-label">Chipnummer</div>
-              <div class="pet-row-val" style="font-family:monospace;font-size:13px">528140000123456</div>
-            </div>
-          </div>
+<!-- PRE-SCAN -->
+<section class="sec">
+  <div class="reveal">
+    <div class="chip" id="t-ps-chip">🐕 Pre-scan</div>
+    <h2 class="sh shd" id="t-ps-h">Volledig contactloos<br><em>onboarden — geen intake nodig</em></h2>
+    <p class="sl sld" id="t-ps-sub">De klant vult bij de boeking een recente foto én gerichte vragen in. De dienstverlener weet alles nog vóór het dier binnenkomt.</p>
+  </div>
+  <div class="psg">
+    <div class="petc reveal d1">
+      <div class="petch"><div class="petav">🐕</div><div><div class="petn">Max</div><div class="petbr" id="t-petbreed">Golden Retriever · 3 jaar · Reu</div></div></div>
+      <div class="petphr">
+        <div class="petpht">📸</div>
+        <div style="flex:1"><div class="petphl" id="t-photolabel">Recente foto (verplicht bij boeking)</div><div class="petphh" id="t-photohint">Geüpload 3 dagen geleden — verzorger herkent het dier direct bij aankomst</div></div>
+        <button class="petphb" id="t-photobtn">Bijwerken</button>
+      </div>
+      <div class="petbd">
+        <div class="petrow"><div class="petri">🩺</div><div><div class="petrl" id="t-pr1l">Dierenarts</div><div class="petrv" id="t-pr1v">De Wit Dierkliniek, Amsterdam</div></div></div>
+        <div class="petrow"><div class="petri">💊</div><div><div class="petrl" id="t-pr2l">Medicatie</div><div class="petrv" id="t-pr2v">Geen actieve medicatie</div></div></div>
+        <div class="petrow"><div class="petri">🧠</div><div><div class="petrl" id="t-pr3l">Gedragsprofiel</div><div class="petrv" id="t-pr3v">Schrikachtig voor stofzuigers en harde geluiden</div></div></div>
+        <div class="petrow"><div class="petri">⚠️</div><div><div class="petrl" id="t-pr4l">Allergie</div><div class="petrv" id="t-pr4v">Bijenwas shampoo — gebruik alternatief</div></div></div>
+        <div class="petrow"><div class="petri">🏷️</div><div><div class="petrl" id="t-pr5l">Chipnummer</div><div class="petrv" id="t-pr5v" style="font-family:monospace;font-size:12px">528140000123456</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="qcard reveal d2">
+        <div class="qh"><div style="font-size:26px">📋</div><div><div class="qt" id="t-qtitle">Pre-scan vragenlijst</div><div class="qs" id="t-qsub">Ingevuld door klant bij boeking — direct zichtbaar voor verzorger</div></div></div>
+        <div class="qb">
+          <div class="qi"><div class="ql" id="t-q1l">Hoe is het gedrag bij vreemden?</div><div class="qa" id="t-q1a">Vriendelijk maar snel afgeleid — houdt van aandacht, kan trekken aan de riem</div></div>
+          <div class="qi"><div class="ql" id="t-q2l">Gevoelige plekken bij het trimmen?</div><div class="qa" id="t-q2a">Oren en poten — rustig aanpakken, vorige keer flink gespannen</div></div>
+          <div class="qi"><div class="ql" id="t-q3l">Laatste beurt &amp; bijzonderheden?</div><div class="qa" id="t-q3a">6 weken geleden — vacht iets langer aan de buik en flanken</div></div>
+          <div class="qi"><div class="ql" id="t-q4l">Gewenst resultaat / wensen klant</div><div class="qai" id="t-q4a">Klant vult in bij boeking…</div></div>
+          <div class="qi"><div class="ql" id="t-q5l">Referentiefoto trimstijl</div><div class="qa" id="t-q5a">📎 referentiefoto_max.jpg · geüpload door klant</div></div>
         </div>
       </div>
-
-      <!-- Pre-scan card -->
-      <div class="prescan-card reveal reveal-d2">
-        <div class="prescan-header">
-          <div style="font-size:28px">✅</div>
-          <div>
-            <div class="prescan-title">Pre-scan bij boeking</div>
-            <div class="prescan-sub">Informatie direct beschikbaar voor de verzorger</div>
-          </div>
+      <div class="psben reveal d3">
+        <div class="psben-top">
+          <div class="psbeni">✅</div>
+          <div class="psbent" id="t-psben"><strong>Nul contactmomenten vóór de afspraak.</strong> Geen telefoontje, geen intakeformulier bij aankomst. Alles is al bekend — de verzorger kan direct beginnen.</div>
         </div>
-        <div class="prescan-items">
-          <div class="prescan-item">
-            <div class="prescan-item-icon">🧬</div>
-            <div>
-              <div class="prescan-item-title">Geen intake-formulier bij aankomst</div>
-              <div class="prescan-item-desc">Ras, leeftijd en gewicht staan automatisch in het afspraakoverzicht — de klant hoeft niets in te vullen.</div>
-            </div>
+        <div class="psben-wa">
+          <div class="psben-wa-label">
+            <strong id="t-wa-title">Toch contact nodig?</strong>
+            <span id="t-wa-desc">Bereik de klant direct vanuit de afspraak via WhatsApp — zonder telefoonnummer te hoeven opzoeken.</span>
           </div>
-          <div class="prescan-item">
-            <div class="prescan-item-icon">⚕️</div>
-            <div>
-              <div class="prescan-item-title">Medische info direct beschikbaar</div>
-              <div class="prescan-item-desc">Medicatie, allergieën en aandachtspunten zijn zichtbaar nog vóór het dier binnenkomt.</div>
-            </div>
-          </div>
-          <div class="prescan-item">
-            <div class="prescan-item-icon">😰</div>
-            <div>
-              <div class="prescan-item-title">Gedragsprofiel voorkomt stress</div>
-              <div class="prescan-item-desc">De verzorger weet van tevoren wat te verwachten — rustiger voor dier én medewerker.</div>
-            </div>
-          </div>
-          <div class="prescan-item">
-            <div class="prescan-item-icon">📞</div>
-            <div>
-              <div class="prescan-item-title">Noodcontacten altijd bij de hand</div>
-              <div class="prescan-item-desc">Dierenarts en chipnummer staan klaar bij calamiteiten — ook via WhatsApp-snelknop.</div>
-            </div>
-          </div>
+          <a class="wa-btn" href="https://wa.me/?text=Hallo%2C+we+willen+even+contact+opnemen+over+uw+afspraak+bij+PawConnect." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.099 1.514 5.82L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.732.879.899-3.636-.234-.374A9.818 9.818 0 0112 2.182c5.313 0 9.818 4.505 9.818 9.818 0 5.314-4.505 9.818-9.818 9.818z"/></svg>
+            <span id="t-wa-btn">WhatsApp klant</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ MODULES -->
-<section class="modules-section">
-  <div class="modules-inner">
+<!-- AGENDA -->
+<section class="secbg" style="background:var(--navy-d)">
+  <div class="secinr">
     <div class="reveal">
-      <div class="chip">⚡ Gebouwde modules</div>
-      <h2 class="section-heading">Wat is er al<br><em>live en werkend</em></h2>
+      <div class="chip chipl" id="t-ag-chip">📅 Gedeelde agenda</div>
+      <h2 class="sh shw" id="t-ag-h">Altijd inzicht in<br><em>wie, wat en wanneer</em></h2>
+      <p class="sl slw" id="t-ag-sub">De dynamische weekagenda toont alle afspraken per medewerker in hun eigen kleur. Tijdblokken, vrije dagen en uitzonderingen zijn direct zichtbaar — voor bedrijf én medewerker.</p>
     </div>
-
-    <div class="modules-grid">
-      <!-- Done modules -->
-      <div class="mod-chip done reveal reveal-d1" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Registratie klant
+    <div class="agm reveal d1">
+      <div class="agtb">
+        <div class="agtbl">
+          <div class="agnav"><div class="agnavb">‹</div><div class="agnavb">›</div></div>
+          <span class="agper" id="t-agperiod">Week 11 — 10–14 maart 2026</span>
+        </div>
+        <div class="agvbs">
+          <div class="agvb" id="t-agv-day">Dag</div>
+          <div class="agvb act" id="t-agv-week">Week</div>
+          <div class="agvb" id="t-agv-month">Maand</div>
+        </div>
       </div>
-      <div class="mod-chip done reveal reveal-d1" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Registratie bedrijf
+      <div class="agwk">
+        <div style="border-bottom:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06)"></div>
+        <div class="agdh"><div class="agdn" id="t-d1">Ma</div><div class="agdd">10</div></div>
+        <div class="agdh"><div class="agdn" id="t-d2">Di</div><div class="agdd">11</div></div>
+        <div class="agdh tc"><div class="agdn" id="t-d3">Wo</div><div class="agdd tod">12</div></div>
+        <div class="agdh"><div class="agdn" id="t-d4">Do</div><div class="agdd">13</div></div>
+        <div class="agdh"><div class="agdn" id="t-d5">Vr</div><div class="agdd">14</div></div>
       </div>
-      <div class="mod-chip done reveal reveal-d2" style="background:rgba(61,81,102,.5)">
-        <span class="mod-check" style="color:#A8D8D7">✓</span> Login 3 rollen
+      <div style="display:grid;grid-template-columns:52px repeat(5,1fr);max-height:364px;overflow:hidden">
+        <div class="agtc">
+          <div class="agts"><span class="agtl">9:00</span></div><div class="agts"><span class="agtl">10:00</span></div>
+          <div class="agts"><span class="agtl">11:00</span></div><div class="agts"><span class="agtl">12:00</span></div>
+          <div class="agts"><span class="agtl">13:00</span></div><div class="agts"><span class="agtl">14:00</span></div>
+          <div class="agts"><span class="agtl">15:00</span></div>
+        </div>
+        <!-- Ma -->
+        <div class="agdc" style="position:relative"><div class="aggr"><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div></div>
+          <div class="agev" style="top:4px;height:98px;background:#4B9C9A"><div class="agen">🐩 Bella — Volledig trim</div><div class="agem">9:00–10:30 · Rosa</div></div>
+          <div class="agev" style="top:158px;height:50px;background:#3D5166"><div class="agen">💅 Rex — Nagels knippen</div><div class="agem">12:00 · Daan</div></div>
+          <div class="agev" style="top:260px;height:72px;background:#27AE60"><div class="agen">🛁 Nala — Bad &amp; dry</div><div class="agem">14:00–15:15 · Lisa</div></div>
+        </div>
+        <!-- Di -->
+        <div class="agdc" style="position:relative"><div class="aggr"><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div></div>
+          <div class="agev" style="top:0;height:50px;background:rgba(224,85,85,.28);border:1.5px dashed rgba(224,85,85,.45)"><div class="agen" style="color:rgba(255,255,255,.65)" id="t-free-label">🚫 Lisa — Vrij dag</div><div class="agem" style="color:rgba(255,255,255,.42)" id="t-free-sub">Goedgekeurde uitzondering</div></div>
+          <div class="agev" style="top:54px;height:72px;background:#E07B00"><div class="agen">✂️ Buddy — Trim</div><div class="agem">9:45–11:00 · Daan</div></div>
+          <div class="agev" style="top:208px;height:98px;background:#4B9C9A"><div class="agen">🐩 Luna — Volledig trim</div><div class="agem">13:00–14:30 · Rosa</div></div>
+        </div>
+        <!-- Wo TODAY -->
+        <div class="agdc tc" style="position:relative"><div class="aggr"><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div></div>
+          <div style="position:absolute;left:0;right:0;top:104px;height:2px;background:var(--red);z-index:6"></div>
+          <div style="position:absolute;left:-5px;top:97px;width:12px;height:12px;background:var(--red);border-radius:50%;z-index:6"></div>
+          <div class="agev" style="top:4px;height:72px;background:#4B9C9A"><div class="agen">🐕 Max — Trim</div><div class="agem">9:00–10:15 · Rosa</div></div>
+          <div class="agev" style="top:158px;height:98px;background:#27AE60"><div class="agen">🛁 Coco — Bad &amp; dry</div><div class="agem">12:00–13:30 · Lisa</div></div>
+          <div class="agev" style="top:310px;height:50px;background:#3D5166"><div class="agen">✂️ Pip — Nagels</div><div class="agem">15:00 · Daan</div></div>
+        </div>
+        <!-- Do -->
+        <div class="agdc" style="position:relative"><div class="aggr"><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div></div>
+          <div class="agev" style="top:104px;height:72px;background:#E07B00"><div class="agen">🐩 Fifi — Trim</div><div class="agem">11:00–12:15 · Daan</div></div>
+          <div class="agev" style="top:208px;height:50px;background:#4B9C9A"><div class="agen">💅 Mochi — Nagels</div><div class="agem">13:00 · Rosa</div></div>
+        </div>
+        <!-- Vr -->
+        <div class="agdc" style="position:relative"><div class="aggr"><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div><div class="agrw"></div></div>
+          <div class="agev" style="top:4px;height:98px;background:#27AE60"><div class="agen">🐕 Bear — Volledig</div><div class="agem">9:00–10:30 · Lisa</div></div>
+          <div class="agev" style="top:158px;height:72px;background:#4B9C9A"><div class="agen">✂️ Lola — Trim</div><div class="agem">12:00–13:15 · Rosa</div></div>
+          <div class="agev" style="top:260px;height:50px;background:#3D5166"><div class="agen">🛁 Teddy — Bad</div><div class="agem">14:00 · Daan</div></div>
+        </div>
       </div>
-      <div class="mod-chip done reveal reveal-d2" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Klant dashboard
-      </div>
-      <div class="mod-chip done reveal reveal-d3" style="background:rgba(61,81,102,.5)">
-        <span class="mod-check" style="color:#A8D8D7">✓</span> Bedrijf dashboard
-      </div>
-      <div class="mod-chip done reveal reveal-d1" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Diensten CRUD
-      </div>
-      <div class="mod-chip done reveal reveal-d2" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Openingstijden
-      </div>
-      <div class="mod-chip done reveal reveal-d3" style="background:rgba(61,81,102,.5)">
-        <span class="mod-check" style="color:#A8D8D7">✓</span> Medewerker uitnodigen
-      </div>
-      <div class="mod-chip done reveal reveal-d1" style="background:rgba(75,156,154,.15)">
-        <span class="mod-check" style="color:var(--teal)">✓</span> Mw. dashboard
-      </div>
-      <div class="mod-chip done reveal reveal-d2" style="background:rgba(39,174,96,.15)">
-        <span class="mod-check" style="color:#27AE60">✓</span> Werkschema + GK
-      </div>
-      <div class="mod-chip done reveal reveal-d3" style="background:rgba(39,174,96,.15)">
-        <span class="mod-check" style="color:#27AE60">✓</span> Uitzonderingen
-      </div>
-      <div class="mod-chip done reveal reveal-d1" style="background:rgba(39,174,96,.15)">
-        <span class="mod-check" style="color:#27AE60">✓</span> Goedkeuringen
-      </div>
-      <div class="mod-chip done reveal reveal-d2" style="background:rgba(224,123,0,.15)">
-        <span class="mod-check" style="color:var(--orange)">✓</span> Boekingsflow klant
-      </div>
-      <div class="mod-chip done reveal reveal-d3" style="background:rgba(224,123,0,.15)">
-        <span class="mod-check" style="color:var(--orange)">✓</span> Beschikbaarheid API
-      </div>
-      <div class="mod-chip pending reveal reveal-d4">
-        <span class="mod-check">○</span> Gedeelde agenda
+      <div class="agleg">
+        <span class="aglegttl" id="t-ag-legttl">Medewerkers</span>
+        <div class="agli"><div class="agld" style="background:#4B9C9A"></div>Rosa</div>
+        <div class="agli"><div class="agld" style="background:#3D5166"></div>Daan</div>
+        <div class="agli"><div class="agld" style="background:#27AE60"></div>Lisa</div>
+        <div class="agli"><div class="agld" style="background:#E07B00"></div>Pieter</div>
+        <div class="agli" style="margin-left:10px"><div class="agld" style="background:rgba(224,85,85,.35);border:1.5px dashed rgba(224,85,85,.5)"></div><span id="t-ag-free">Vrij / uitzondering</span></div>
+        <div class="agli"><div style="width:18px;height:2px;background:var(--red);flex-shrink:0"></div><span id="t-ag-now">Nu (live)</span></div>
       </div>
     </div>
-
-    <div class="tech-bar reveal" style="margin-top:24px">
-      <span class="tech-label">Stack</span>
-      <div class="tech-item"><div class="tech-dot"></div>PHP 8</div>
-      <div class="tech-item"><div class="tech-dot"></div>MySQL 5.7</div>
-      <div class="tech-item"><div class="tech-dot"></div>TransIP Shared</div>
-      <div class="tech-item"><div class="tech-dot"></div>PHPMailer SMTP</div>
-      <div class="tech-item"><div class="tech-dot"></div>PDOK Locatieserver</div>
-      <div class="tech-item"><div class="tech-dot"></div>Nunito + Poppins</div>
-      <div class="tech-item"><div class="tech-dot"></div>Responsive UI</div>
-      <div class="tech-item"><div class="tech-dot"></div>Session auth</div>
+    <div class="agvds">
+      <div class="agvd reveal d1"><div class="agvdi">🎨</div><div class="agvdt" id="t-agv1t">Kleurcodering per medewerker</div><div class="agvdd" id="t-agv1d">Elke medewerker heeft een vaste kleur uit het kleurenblind-veilige Okabe-Ito palet. In één oogopslag zichtbaar wie wat doet en wanneer.</div></div>
+      <div class="agvd reveal d2"><div class="agvdi">⏱️</div><div class="agvdt" id="t-agv2t">Tijdblokken &amp; werkschema's</div><div class="agvdd" id="t-agv2d">Goedgekeurde tijdblokken vormen de basis voor de beschikbaarheidsberekening. Vrije dagen en uitzonderingen zijn direct zichtbaar in de agenda.</div></div>
+      <div class="agvd reveal d3"><div class="agvdi">📱</div><div class="agvdt" id="t-agv3t">Klant &amp; medewerker eigen view</div><div class="agvdd" id="t-agv3d">De klant ziet zijn eigen afspraken in het dashboard. De medewerker ziet zijn eigen week. Het bedrijf ziet alles — op mobiel en desktop.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ FOOTER -->
-<footer class="footer">
-  <div class="footer-paw">🐾</div>
-  <div class="footer-brand">PawConnect</div>
-  <div class="footer-tagline">Dierenverzorging, digitaal georganiseerd</div>
-  <div class="footer-divider"></div>
-  <div class="footer-meta">
-    <a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; © 2026 PawConnect &nbsp;·&nbsp; Pilot versie
-  </div>
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ftp">🐾</div>
+  <div class="ftb">PawConnect</div>
+  <div class="ftt" id="t-ft-tag">Dierenverzorging, digitaal georganiseerd · Pilotfase 2026</div>
+  <div class="ftdiv"></div>
+  <div class="ftm"><a href="https://pawconnect.nl">pawconnect.nl</a> &nbsp;·&nbsp; <span id="t-ft-meta">© 2026 PawConnect · Platform in ontwikkeling</span></div>
 </footer>
 
 <script>
-  // Floating paw prints in hero
-  const pawsSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor">
-    <ellipse cx="15" cy="17" rx="6" ry="5.5"/>
-    <ellipse cx="7" cy="12" rx="3.2" ry="3.6"/>
-    <ellipse cx="23" cy="12" rx="3.2" ry="3.6"/>
-    <ellipse cx="10" cy="5.5" rx="3" ry="3.3"/>
-    <ellipse cx="20" cy="5.5" rx="3" ry="3.3"/>
-  </svg>`;
+// ── Paw prints ───────────────────────────────────────────────────
+const ps=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor"><ellipse cx="15" cy="17" rx="6" ry="5.5"/><ellipse cx="7" cy="12" rx="3.2" ry="3.6"/><ellipse cx="23" cy="12" rx="3.2" ry="3.6"/><ellipse cx="10" cy="5.5" rx="3" ry="3.3"/><ellipse cx="20" cy="5.5" rx="3" ry="3.3"/></svg>`;
+const pb=document.querySelector('.paws-bg');
+for(let i=0;i<16;i++){const d=document.createElement('div');d.className='pf';const s=13+Math.random()*22;d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${s}px;height:${s}px;color:rgba(168,216,215,1);--rot:${Math.random()*60-30}deg;--op:${.04+Math.random()*.07};animation-delay:${Math.random()*10}s;animation-duration:${10+Math.random()*8}s;`;d.innerHTML=ps;pb.appendChild(d);}
 
-  const container = document.querySelector('.paws-bg');
-  for (let i = 0; i < 14; i++) {
-    const div = document.createElement('div');
-    div.classList.add('paw-float');
-    const size = 16 + Math.random() * 24;
-    const op = 0.04 + Math.random() * 0.08;
-    div.style.cssText = `
-      left:${Math.random()*100}%;
-      top:${Math.random()*100}%;
-      width:${size}px; height:${size}px;
-      color:rgba(168,216,215,1);
-      --rot:${Math.random()*60-30}deg;
-      --op:${op};
-      animation-delay:${Math.random()*10}s;
-      animation-duration:${10+Math.random()*8}s;
-    `;
-    div.innerHTML = pawsSvg;
-    container.appendChild(div);
+// ── Scroll reveal ─────────────────────────────────────────────────
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── Language toggle ───────────────────────────────────────────────
+let lang='nl';
+
+const STRINGS={
+nl:{
+  title:'PawConnect — Platform Overzicht 2026',
+  'cbar-badge':'🚧 In ontwikkeling',
+  'cbar-text':'PawConnect is momenteel in <strong>pilotfase</strong> — beschikbaar voor geselecteerde dierenverzorgingsbedrijven. Interesse? <strong>Neem contact op →</strong>',
+  langBtn:'🌐 English',
+  hbadge:'🐾 Platform Overzicht 2026',
+  hsub:'Het all-in-one platform voor dierenverzorgingsbedrijven. Van bedrijfsprofiel en gedeelde agenda tot contactloze pre-scan — alles in één omgeving.',
+  's1':'Gebruikersrollen','s2':'Eigen website nodig','s3':'Pre-scan digitaal','s4':'Online boeken',
+  'intro-chip':'🌿 Het verhaal','intro-h':'Dierenverzorging,<br><em>volledig digitaal</em>',
+  'intro-p1':'PawConnect is een volledig op maat gebouwd platform dat dierenverzorgingsbedrijven helpt hun dienstverlening te digitaliseren. Van de eerste uitnodiging van een medewerker tot de bevestigde boeking van een klant — alles verloopt via één platform.',
+  'intro-p2':'Klanten zoeken bedrijven op een interactieve kaart, boeken een afspraak inclusief huisdierprofiel en pre-scan, en ontvangen automatisch bevestiging. De dienstverlener heeft direct alle informatie bij de hand — zonder telefoontje of papieren intake.',
+  'intro-q':'"PawConnect verbindt bedrijf, medewerker en klant in één digitale omgeving — van zoeken en boeken tot de gedeelde werkagenda."',
+  'mapbar':'Bedrijven in jouw buurt — PawConnect Kaart','mapsrch':'Zoek trimsalon, dierenarts, pension…',
+  'prof-chip':'🏢 Digitale etalage','prof-h':'Geen eigen website<br><em>meer nodig</em>',
+  'prof-sub':'PawConnect geeft elk bedrijf een volledig ingericht profiel — met diensten, openingstijden en directe boekknop. Professioneel online aanwezig zonder extra kosten of technische kennis.',
+  'biztype':'✂️ Trimsalon · Amsterdam-Noord','bizmeta1':'📍 2.3 km van jou','bizmeta2':'🕐 Open tot 18:00',
+  'bizdesc':'Gespecialiseerd in alle rassen. Al 12 jaar de vertrouwde trimsalon van de buurt met oog voor het welzijn van jouw huisdier.',
+  'svc1n':'Volledig trimmen','svc1m':'60 min · incl. bad & drogen',
+  'svc2n':'Wassen & drogen','svc2m':'45 min',
+  'svc3n':'Nagels knippen','svc3m':'15 min',
+  'bookbtn':'📅 Afspraak maken',
+  'v1t':'Geen eigen website nodig','v1d':'Het PawConnect-profiel is de digitale etalage van het bedrijf. Vindbaar via de kaart, geoptimaliseerd voor mobiel, altijd actueel.',
+  'v2t':'Directe boekknop op het profiel','v2d':'Klanten boeken 24/7 rechtstreeks vanuit het profiel — geen telefoontje. Beschikbaarheid real-time berekend.',
+  'v3t':'Reviews & betrouwbaarheid','v3d':'Klantbeoordelingen bouwen vertrouwen op. Nieuwe klanten zien direct de reputatie van het bedrijf.',
+  'v4t':'Diensten & prijzen altijd actueel','v4d':'De beheerder past diensten en openingstijden zelf aan — wijzigingen direct zichtbaar voor klanten.',
+  'rol-chip':'👥 Gebruikers','rol-h':'Drie rollen,<br><em>één platform</em>',
+  'rol-sub':'Bedrijf, medewerker en klant hebben elk een eigen dashboard, rechten en workflow — naadloos verbonden.',
+  'r1t':'Bedrijf / Beheerder','r1d':'Beheert de volledige bedrijfsomgeving. Stuurt het team aan en keurt alles goed via het dashboard.',
+  'r1f':['Profiel, diensten & openingstijden','Medewerkers uitnodigen & kleurbeheer','Werkschema\'s & uitzonderingen goedkeuren','Gedeelde agenda met kleurcodering','Afspraken, klantbeheer & pre-scan inzage'],
+  'r2t':'Medewerker','r2d':'Ontvangt uitnodiging per mail, stelt werkschema in en beheert eigen tijdblokken in de agenda.',
+  'r2f':['Uitnodiging via beveiligde token-link','Werkschema per dag + tijdblokken instellen','Vrije dagen & extra werkdagen aanvragen','Eigen kleur in de gedeelde agenda','Pre-scan per afspraak inzichtelijk'],
+  'r3t':'Klant','r3d':'Registreert zich, voegt huisdieren toe met foto en pre-scan, en boekt afspraken via de kaart.',
+  'r3f':['Bedrijven zoeken op kaart (PDOK)','Dienst & tijdslot kiezen — 24/7','Huisdierprofiel + recente foto uploaden','Pre-scan vragen invullen bij boeking','Bevestiging + WhatsApp-snelknop'],
+  'fl-chip':'📅 Boekingsflow','fl-h':'Van zoeken naar<br><em>bevestiging — contactloos</em>',
+  'fl-sub':'Vijf stappen. Geen telefoontje. Real-time beschikbaarheid op basis van werkschema\'s, openingstijden en uitzonderingen.',
+  'fl1l':'Bedrijf zoeken','fl1s':'Op kaart filteren op type en locatie',
+  'fl2l':'Dienst kiezen','fl2s':'Duur, prijs en categorie',
+  'fl3l':'Datum & tijdslot','fl3s':'API berekent vrije slots per 15 min',
+  'fl4l':'Pre-scan insturen','fl4s':'Foto + vragenlijst automatisch meegestuurd',
+  'fl5l':'Bevestiging & mail','fl5s':'Klant én bedrijf ontvangen direct een mail',
+  'api1t':'Beschikbaarheid API','api1d':'Business hours · werkschema\'s · uitzonderingen · bestaande afspraken — alles gecombineerd in één berekening',
+  'api2t':'Privacy-by-design','api2d':'Klant ziet nooit ruwe agenda-data — alleen beschikbare tijdsloten, berekend per dienst inclusief buffer',
+  'api3t':'Concurrency-safe','api3d':'Database-level overlap check — geen dubbele boekingen bij gelijktijdige aanvragen',
+  'ps-chip':'🐕 Pre-scan','ps-h':'Volledig contactloos<br><em>onboarden — geen intake nodig</em>',
+  'ps-sub':'De klant vult bij de boeking een recente foto én gerichte vragen in. De dienstverlener weet alles nog vóór het dier binnenkomt.',
+  'petbreed':'Golden Retriever · 3 jaar · Reu',
+  'photolabel':'Recente foto (verplicht bij boeking)','photohint':'Geüpload 3 dagen geleden — verzorger herkent het dier direct bij aankomst','photobtn':'Bijwerken',
+  'pr1l':'Dierenarts','pr1v':'De Wit Dierkliniek, Amsterdam',
+  'pr2l':'Medicatie','pr2v':'Geen actieve medicatie',
+  'pr3l':'Gedragsprofiel','pr3v':'Schrikachtig voor stofzuigers en harde geluiden',
+  'pr4l':'Allergie','pr4v':'Bijenwas shampoo — gebruik alternatief',
+  'pr5l':'Chipnummer','pr5v':'528140000123456',
+  'qtitle':'Pre-scan vragenlijst','qsub':'Ingevuld door klant bij boeking — direct zichtbaar voor verzorger',
+  'q1l':'Hoe is het gedrag bij vreemden?','q1a':'Vriendelijk maar snel afgeleid — houdt van aandacht, kan trekken aan de riem',
+  'q2l':'Gevoelige plekken bij het trimmen?','q2a':'Oren en poten — rustig aanpakken, vorige keer flink gespannen',
+  'q3l':'Laatste beurt & bijzonderheden?','q3a':'6 weken geleden — vacht iets langer aan de buik en flanken',
+  'q4l':'Gewenst resultaat / wensen klant','q4a':'Klant vult in bij boeking…',
+  'q5l':'Referentiefoto trimstijl','q5a':'📎 referentiefoto_max.jpg · geüpload door klant',
+  'psben':'<strong>Nul contactmomenten vóór de afspraak.</strong> Geen telefoontje, geen intakeformulier bij aankomst. Alles is al bekend — de verzorger kan direct beginnen.',
+  'wa-title':'Toch contact nodig?','wa-desc':'Bereik de klant direct vanuit de afspraak via WhatsApp — zonder telefoonnummer te hoeven opzoeken.','wa-btn':'WhatsApp klant',
+  'ag-chip':'📅 Gedeelde agenda','ag-h':'Altijd inzicht in<br><em>wie, wat en wanneer</em>',
+  'ag-sub':'De dynamische weekagenda toont alle afspraken per medewerker in hun eigen kleur. Tijdblokken, vrije dagen en uitzonderingen zijn direct zichtbaar — voor bedrijf én medewerker.',
+  'agperiod':'Week 11 — 10–14 maart 2026',
+  'agv-day':'Dag','agv-week':'Week','agv-month':'Maand',
+  'd1':'Ma','d2':'Di','d3':'Wo','d4':'Do','d5':'Vr',
+  'ag-legttl':'Medewerkers','ag-free':'Vrij / uitzondering','ag-now':'Nu (live)',
+  'free-label':'🚫 Lisa — Vrij dag','free-sub':'Goedgekeurde uitzondering',
+  'agv1t':'Kleurcodering per medewerker','agv1d':'Elke medewerker heeft een vaste kleur uit het kleurenblind-veilige Okabe-Ito palet. In één oogopslag zichtbaar wie wat doet en wanneer.',
+  'agv2t':'Tijdblokken & werkschema\'s','agv2d':'Goedgekeurde tijdblokken vormen de basis voor de beschikbaarheidsberekening. Vrije dagen en uitzonderingen zijn direct zichtbaar in de agenda.',
+  'agv3t':'Klant & medewerker eigen view','agv3d':'De klant ziet zijn eigen afspraken in het dashboard. De medewerker ziet zijn eigen week. Het bedrijf ziet alles — op mobiel en desktop.',
+  'ft-tag':'Dierenverzorging, digitaal georganiseerd · Pilotfase 2026','ft-meta':'© 2026 PawConnect · Platform in ontwikkeling',
+},
+en:{
+  title:'PawConnect — Platform Overview 2026',
+  'cbar-badge':'🚧 Under development',
+  'cbar-text':'PawConnect is currently in <strong>pilot phase</strong> — available for selected pet care businesses. Interested? <strong>Get in touch →</strong>',
+  langBtn:'🌐 Nederlands',
+  hbadge:'🐾 Platform Overview 2026',
+  hsub:'The all-in-one platform for pet care businesses. From business profile and shared calendar to contactless pre-scan — everything in one environment.',
+  's1':'User roles','s2':'Own website needed','s3':'Pre-scan digital','s4':'Online booking',
+  'intro-chip':'🌿 The story','intro-h':'Pet care,<br><em>fully digital</em>',
+  'intro-p1':'PawConnect is a fully custom-built platform that helps pet care businesses digitise their services. From the first employee invitation to a confirmed client booking — everything flows through one platform.',
+  'intro-p2':'Clients find businesses on an interactive map, book appointments including their pet profile and pre-scan, and receive automatic confirmation. The service provider has all the information at hand — no phone calls or paper intake forms.',
+  'intro-q':'"PawConnect connects business, employee and client in one digital environment — from search and booking to the shared work calendar."',
+  'mapbar':'Businesses near you — PawConnect Map','mapsrch':'Search groomer, vet, boarding…',
+  'prof-chip':'🏢 Digital storefront','prof-h':'No own website<br><em>needed anymore</em>',
+  'prof-sub':'PawConnect gives every business a fully set-up profile — with services, opening hours and a direct booking button. Professionally online without extra costs or technical knowledge.',
+  'biztype':'✂️ Dog Groomer · Amsterdam-Noord','bizmeta1':'📍 2.3 km from you','bizmeta2':'🕐 Open until 6 PM',
+  'bizdesc':'Specialised in all breeds. The trusted neighbourhood groomer for 12 years, with care for your pet\'s wellbeing.',
+  'svc1n':'Full groom','svc1m':'60 min · incl. bath & dry',
+  'svc2n':'Bath & dry','svc2m':'45 min',
+  'svc3n':'Nail trim','svc3m':'15 min',
+  'bookbtn':'📅 Book appointment',
+  'v1t':'No own website needed','v1d':'The PawConnect profile is the digital storefront of the business. Discoverable via the map, optimised for mobile, always up-to-date.',
+  'v2t':'Direct booking button on the profile','v2d':'Clients book 24/7 directly from the profile — no phone calls. Availability calculated in real-time.',
+  'v3t':'Reviews & trust','v3d':'Client ratings build trust. New clients immediately see the reputation of the business.',
+  'v4t':'Services & prices always current','v4d':'The manager updates services and opening hours themselves — changes are immediately visible to clients.',
+  'rol-chip':'👥 Users','rol-h':'Three roles,<br><em>one platform</em>',
+  'rol-sub':'Business, employee and client each have their own dashboard, permissions and workflow — seamlessly connected.',
+  'r1t':'Business / Manager','r1d':'Manages the entire business environment. Leads the team and approves everything via the dashboard.',
+  'r1f':['Profile, services & opening hours','Invite employees & colour management','Approve schedules & exceptions','Shared calendar with colour coding','Appointments, client management & pre-scan access'],
+  'r2t':'Employee','r2d':'Receives an email invitation, sets up their schedule and manages their own time blocks in the calendar.',
+  'r2f':['Invitation via secure token link','Set daily schedule + time blocks','Request days off & extra work days','Own colour in the shared calendar','Pre-scan visible per appointment'],
+  'r3t':'Client','r3d':'Registers, adds pets with photo and pre-scan, and books appointments via the map.',
+  'r3f':['Find businesses on map (PDOK)','Choose service & time slot — 24/7','Create pet profile + upload recent photo','Fill in pre-scan questions when booking','Confirmation + WhatsApp quick link'],
+  'fl-chip':'📅 Booking flow','fl-h':'From search to<br><em>confirmation — contactless</em>',
+  'fl-sub':'Five steps. No phone call. Real-time availability based on schedules, opening hours and exceptions.',
+  'fl1l':'Find a business','fl1s':'Filter on map by type and location',
+  'fl2l':'Choose a service','fl2s':'Duration, price and category',
+  'fl3l':'Date & time slot','fl3s':'API calculates free slots per 15 min',
+  'fl4l':'Submit pre-scan','fl4s':'Photo + questionnaire sent automatically',
+  'fl5l':'Confirmation & email','fl5s':'Client and business both receive an email instantly',
+  'api1t':'Availability API','api1d':'Business hours · schedules · exceptions · existing appointments — all combined in one calculation',
+  'api2t':'Privacy-by-design','api2d':'Clients never see raw calendar data — only available time slots, calculated per service including buffer',
+  'api3t':'Concurrency-safe','api3d':'Database-level overlap check — no double bookings with simultaneous requests',
+  'ps-chip':'🐕 Pre-scan','ps-h':'Fully contactless<br><em>onboarding — no intake needed</em>',
+  'ps-sub':'The client uploads a recent photo and answers targeted questions when booking. The service provider knows everything before the animal arrives.',
+  'petbreed':'Golden Retriever · 3 years · Male',
+  'photolabel':'Recent photo (required when booking)','photohint':'Uploaded 3 days ago — the groomer recognises the animal immediately upon arrival','photobtn':'Update',
+  'pr1l':'Vet','pr1v':'De Wit Animal Clinic, Amsterdam',
+  'pr2l':'Medication','pr2v':'No active medication',
+  'pr3l':'Behaviour profile','pr3v':'Startled by vacuum cleaners and loud noises',
+  'pr4l':'Allergy','pr4v':'Beeswax shampoo — use alternative',
+  'pr5l':'Chip number','pr5v':'528140000123456',
+  'qtitle':'Pre-scan questionnaire','qsub':'Filled in by client when booking — directly visible to the groomer',
+  'q1l':'How does the pet behave with strangers?','q1a':'Friendly but easily distracted — loves attention, may pull on the lead',
+  'q2l':'Sensitive areas when grooming?','q2a':'Ears and paws — handle gently, was quite tense last time',
+  'q3l':'Last visit & anything to note?','q3a':'6 weeks ago — coat is slightly longer around the belly and flanks',
+  'q4l':'Desired result / client wishes','q4a':'Client fills in when booking…',
+  'q5l':'Reference photo for grooming style','q5a':'📎 reference_photo_max.jpg · uploaded by client',
+  'psben':'<strong>Zero contact moments before the appointment.</strong> No phone call, no intake form on arrival. Everything is already known — the groomer can start immediately.',
+  'wa-title':'Still need to reach out?','wa-desc':'Contact the client directly from the appointment via WhatsApp — no need to look up their phone number.','wa-btn':'WhatsApp client',
+  'ag-chip':'📅 Shared calendar','ag-h':'Always insight into<br><em>who, what and when</em>',
+  'ag-sub':'The dynamic weekly calendar shows all appointments per employee in their own colour. Time blocks, days off and exceptions are immediately visible — for business and employees alike.',
+  'agperiod':'Week 11 — 10–14 March 2026',
+  'agv-day':'Day','agv-week':'Week','agv-month':'Month',
+  'd1':'Mon','d2':'Tue','d3':'Wed','d4':'Thu','d5':'Fri',
+  'ag-legttl':'Employees','ag-free':'Day off / exception','ag-now':'Now (live)',
+  'free-label':'🚫 Lisa — Day off','free-sub':'Approved exception',
+  'agv1t':'Colour coding per employee','agv1d':'Every employee has a fixed colour from the colour-blind-safe Okabe-Ito palette. At a glance you can see who is doing what and when.',
+  'agv2t':'Time blocks & work schedules','agv2d':'Approved time blocks form the basis of the availability calculation. Days off and exceptions are immediately visible in the calendar.',
+  'agv3t':'Client & employee own view','agv3d':'The client sees their own appointments in the dashboard. The employee sees their own week. The business sees everything — on mobile and desktop.',
+  'ft-tag':'Pet care, digitally organised · Pilot phase 2026','ft-meta':'© 2026 PawConnect · Platform under development',
+}};
+
+// Keys that contain HTML (not just text)
+const HTML_KEYS=new Set(['cbar-text','intro-h','prof-h','rol-h','fl-h','ps-h','ag-h','psben']);
+// Keys for role feature lists
+const FEAT_KEYS={'r1f':'t-r1f','r2f':'t-r2f','r3f':'t-r3f'};
+// Dot colours per role
+const DOT_COLS=['var(--teal)','var(--teal-l)','var(--green)'];
+
+function toggleLang(){
+  lang=lang==='nl'?'en':'nl';
+  document.documentElement.lang=lang;
+  document.title=STRINGS[lang].title;
+  document.getElementById('langBtn').textContent=STRINGS[lang].langBtn;
+
+  const S=STRINGS[lang];
+  // Apply all simple string keys via id prefix "t-"
+  for(const [k,v] of Object.entries(S)){
+    if(Array.isArray(v)||k==='title'||k==='langBtn') continue;
+    const el=document.getElementById('t-'+k);
+    if(!el) continue;
+    if(HTML_KEYS.has(k)) el.innerHTML=v;
+    else el.textContent=v;
   }
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+  // Role feature lists
+  ['r1f','r2f','r3f'].forEach((k,i)=>{
+    const container=document.getElementById('t-'+k);
+    if(!container) return;
+    const dots=container.querySelectorAll('.rdot');
+    const items=S[k];
+    const rfs=container.querySelectorAll('.rf');
+    items.forEach((text,fi)=>{
+      if(!rfs[fi]) return;
+      rfs[fi].innerHTML='';
+      const dot=document.createElement('div');
+      dot.className='rdot';
+      dot.style.background=DOT_COLS[i];
+      rfs[fi].appendChild(dot);
+      rfs[fi].appendChild(document.createTextNode(text));
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  });
+}
 </script>
 </body>
 </html>
