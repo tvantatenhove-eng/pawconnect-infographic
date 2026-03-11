@@ -61,8 +61,9 @@ body{font-family:'Poppins',sans-serif;background:#F5FAFA;color:var(--navy);line-
 .sh em{font-style:normal;color:var(--teal)}
 .sl{font-size:16px;max-width:600px;font-weight:400;line-height:1.85}
 .sld{color:var(--grey)}.slw{color:rgba(255,255,255,.48)}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.js-ready .reveal{opacity:0;transform:translateY(28px)}
+.js-ready .reveal.visible{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
 
 /* ── INTRO ── */
@@ -645,8 +646,11 @@ const pb=document.querySelector('.paws-bg');
 for(let i=0;i<16;i++){const d=document.createElement('div');d.className='pf';const s=13+Math.random()*22;d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${s}px;height:${s}px;color:rgba(168,216,215,1);--rot:${Math.random()*60-30}deg;--op:${.04+Math.random()*.07};animation-delay:${Math.random()*10}s;animation-duration:${10+Math.random()*8}s;`;d.innerHTML=ps;pb.appendChild(d);}
 
 // ── Scroll reveal ─────────────────────────────────────────────────
-const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+try {
+  document.body.classList.add('js-ready');
+  const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+} catch(e) { document.body.classList.remove('js-ready'); }
 
 // ── Language toggle ───────────────────────────────────────────────
 let lang='nl';
